@@ -13,9 +13,10 @@ abstract class HuffmanTree implements Comparable<HuffmanTree> {
 }
 
 class HuffmanLeaf extends HuffmanTree {
-    public final char value; // the character this leaf represents
+    //public final char value; // the character this leaf represents
+    public final int value;
 
-    public HuffmanLeaf(int freq, char val) {
+    public HuffmanLeaf(int freq, int val) {
         super(freq);
         value = val;
     }
@@ -59,7 +60,6 @@ public class HuffmanCode {
         if (tree instanceof HuffmanLeaf) {
             HuffmanLeaf leaf = (HuffmanLeaf)tree;
 
-            // print out character, frequency, and code for this leaf (which is just the prefix)
             System.out.println(leaf.value + "\t" + leaf.frequency + "\t" + prefix);
 
         } else if (tree instanceof HuffmanNode) {
@@ -75,23 +75,5 @@ public class HuffmanCode {
             printCodes(node.right, prefix);
             prefix.deleteCharAt(prefix.length()-1);
         }
-    }
-
-    public static void main(String[] args) {
-        String test = "this is an example for huffman encoding";
-
-        // we will assume that all our characters will have
-        // code less than 256, for simplicity
-        int[] charFreqs = new int[256];
-        // read each character and record the frequencies
-        for (char c : test.toCharArray())
-            charFreqs[c]++;
-
-        // build tree
-        HuffmanTree tree = buildTree(charFreqs);
-
-        // print out results
-        System.out.println("SYMBOL\tWEIGHT\tHUFFMAN CODE");
-        printCodes(tree, new StringBuffer());
     }
 }
