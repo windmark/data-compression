@@ -14,25 +14,16 @@ public class Main {
         try {
             fileInputStream = new FileInputStream("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/test1.raw");
             int data;
-            int[] pixelFreq = new int[256];
-
-            /*
-            for (int i = 0; i < 20; i++) {
-                data = fileInputStream.read();
-                pixelFreq[data]++;
-
-                System.out.print(" " + data);
-            }
-            */
+            int[] frequencies = new int[256];
 
             while ((data = fileInputStream.read()) != -1) {
                 data = fileInputStream.read();
-                pixelFreq[data]++;
+                frequencies[data]++;
 
                 //System.out.print(" " + data);
             }
 
-            HuffmanTree tree = huffmanCode.buildTree(pixelFreq);
+            HuffmanTree tree = huffmanCode.buildTree(frequencies);
             System.out.println("Number\tFrequency\tHuffman Code");
             huffmanCode.printCodes(tree, new StringBuffer());
 

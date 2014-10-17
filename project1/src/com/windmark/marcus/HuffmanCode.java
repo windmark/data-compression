@@ -33,26 +33,26 @@ class HuffmanNode extends HuffmanTree {
 }
 
 public class HuffmanCode {
-    // input is an array of frequencies, indexed by character code
-    public static HuffmanTree buildTree(int[] charFreqs) {
-        PriorityQueue<HuffmanTree> trees = new PriorityQueue<HuffmanTree>();
-        // initially, we have a forest of leaves
-        // one for each non-empty character
-        for (int i = 0; i < charFreqs.length; i++)
-            if (charFreqs[i] > 0)
-                trees.offer(new HuffmanLeaf(charFreqs[i], (char)i));
 
-        assert trees.size() > 0;
-        // loop until there is only one tree left
-        while (trees.size() > 1) {
-            // two trees with least frequency
-            HuffmanTree a = trees.poll();
-            HuffmanTree b = trees.poll();
+    public static HuffmanTree buildTree(int[] frequencies) {
+        PriorityQueue<HuffmanTree> codewordTree = new PriorityQueue<HuffmanTree>();
 
-            // put into new node and re-insert into queue
-            trees.offer(new HuffmanNode(a, b));
+        for (int i = 0; i < frequencies.length; i++) {
+            if (frequencies[i] > 0)
+                codewordTree.add(new HuffmanLeaf(frequencies[i], i));
         }
-        return trees.poll();
+
+        // to not continue if is are no frequency > 0
+        assert codewordTree.size() > 0;
+
+        while (codewordTree.size() > 1) {
+            // the two nodes with least frequency
+            HuffmanTree a = codewordTree.poll();
+            HuffmanTree b = codewordTree.poll();
+
+            codewordTree.add(new HuffmanNode(a, b));
+        }
+        return codewordTree.poll();
     }
 
     public static void printCodes(HuffmanTree tree, StringBuffer prefix) {
@@ -63,12 +63,12 @@ public class HuffmanCode {
             System.out.println(leaf.value + "\t" + leaf.frequency + "\t" + prefix);
 
         } else if (tree instanceof HuffmanNode) {
-            HuffmanNode node = (HuffmanNode)tree;
+            HuffmanNode node = (HuffmanNode) tree;
 
             // traverse left
             prefix.append('0');
             printCodes(node.left, prefix);
-            prefix.deleteCharAt(prefix.length()-1);
+            prefix.deleteCharAt(prefix.length() - 1);
 
             // traverse right
             prefix.append('1');
