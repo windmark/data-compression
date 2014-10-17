@@ -14,14 +14,12 @@ public class Main {
         try {
             fileInputStream = new FileInputStream("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/test1.raw");
             int data;
-            int[] frequencies = new int[256];
 
-            while ((data = fileInputStream.read()) != -1) {
-                data = fileInputStream.read();
-                frequencies[data]++;
 
-                //System.out.print(" " + data);
-            }
+            FrequencyTable frequencies = new FrequencyTable(256);
+            frequencies.init(fileInputStream);
+
+
 
             HuffmanTree tree = huffmanCode.buildTree(frequencies);
             System.out.println("Number\tFrequency\tHuffman Code");

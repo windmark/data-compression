@@ -34,12 +34,12 @@ class HuffmanNode extends HuffmanTree {
 
 public class HuffmanCode {
 
-    public static HuffmanTree buildTree(int[] frequencies) {
+    public static HuffmanTree buildTree(FrequencyTable frequencies) {
         PriorityQueue<HuffmanTree> codewordTree = new PriorityQueue<HuffmanTree>();
 
-        for (int i = 0; i < frequencies.length; i++) {
-            if (frequencies[i] > 0)
-                codewordTree.add(new HuffmanLeaf(frequencies[i], i));
+        for (int i = 0; i < frequencies.length(); i++) {
+            if (frequencies.get(i) > 0)
+                codewordTree.add(new HuffmanLeaf(frequencies.get(i), i));
         }
 
         // to not continue if is are no frequency > 0
