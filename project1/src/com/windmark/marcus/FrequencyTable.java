@@ -12,7 +12,7 @@ public class FrequencyTable {
         frequencies = new int[size];
     }
 
-    public void init(FileInputStream fileInputStream) {
+    public void generate(FileInputStream fileInputStream) {
         int data;
         try {
             while ((data = fileInputStream.read()) != -1) {
@@ -26,6 +26,8 @@ public class FrequencyTable {
     }
 
     public int get(int i) {
+        if (i < 0 || i >= frequencies.length)
+            throw new IllegalArgumentException("Index out of range");
         return frequencies[i];
     }
 
