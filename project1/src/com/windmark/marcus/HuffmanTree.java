@@ -35,27 +35,24 @@ public class HuffmanTree {
         return tree;
     }
 
-
-
-
-    public void printCodes(BinaryTree tree, StringBuffer prefix) {
+    public void print(BinaryTree tree, StringBuffer prefix) {
         assert tree != null;
         if (tree instanceof Leaf) {
             Leaf leaf = (Leaf)tree;
 
-            System.out.println(leaf.value + "\t" + leaf.frequency + "\t" + prefix);
+            System.out.println(leaf.value + "\t\t" + prefix + "\t\t" + leaf.frequency);
 
         } else if (tree instanceof Node) {
             Node node = (Node) tree;
 
             // traverse left
             prefix.append('0');
-            printCodes(node.left, prefix);
+            print(node.left, prefix);
             prefix.deleteCharAt(prefix.length() - 1);
 
             // traverse right
             prefix.append('1');
-            printCodes(node.right, prefix);
+            print(node.right, prefix);
             prefix.deleteCharAt(prefix.length()-1);
         }
     }

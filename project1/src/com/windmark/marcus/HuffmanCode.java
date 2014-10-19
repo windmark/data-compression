@@ -45,5 +45,6 @@ public class HuffmanCode {
     public ArrayList<List<Integer>> get() {
         return codeTable;
     }
+    public List<Integer> getValueCode(int index) { return codeTable.get(index); }
 
 }
