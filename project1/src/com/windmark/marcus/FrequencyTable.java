@@ -15,12 +15,20 @@ public class FrequencyTable {
         InputStream inputStream = new BufferedInputStream(new FileInputStream(inputFile));
 
         try {
+/*
             int data;
             while ((data = inputStream.read()) != -1) {
                 data = inputStream.read();
                 frequencies[data]++;
             }
+*/
 
+            while (true) {
+                int b = inputStream.read();
+                if (b == -1)
+                    break;
+                frequencies[b]++;
+            }
         } finally {
             inputStream.close();
         }

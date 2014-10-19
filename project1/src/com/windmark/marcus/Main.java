@@ -2,7 +2,13 @@ package com.windmark.marcus;
 
 import java.io.*;
 import java.util.List;
-
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Main {
     public static void main(String args[]) throws IOException {
@@ -14,11 +20,8 @@ public class Main {
             File outputFile = new File(args[1]);
 */
 
-            File inputFile = new File("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/test1.raw");
+            File inputFile = new File("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/mw.raw");
             File outputFile = new File("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/compressed/test1_compressed.raw");
-
-
-            OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFile));
 
 
             FrequencyTable frequencies = new FrequencyTable(size);
@@ -37,33 +40,27 @@ public class Main {
 
     private static void encode(HuffmanCode code, File inputFile, File outputFile) throws IOException {
         InputStream inputStream = new BufferedInputStream(new FileInputStream(inputFile));
-        OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
+        BitOutputStream outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
+
 
         try {
             while (true) {
-                int value = inputStream.read();
-                if (value == -1)
+                int b = inputStream.read();
+                if (b == -1)
                     break;
-                List<Integer> bits = code.getValueCode(value);
+                List<Integer> bits = code.getValueCode(b);
                 write(bits, outputStream);
             }
+
         } finally {
             inputStream.close();
             outputStream.close();
         }
 
-/*
 
-        do {
-            value = in.read();
-            List<Integer> bits = code.getValueCode(value);
-            write(bits, out);
-
-        } while ((value = in.read()) != -1);
-*/
     }
 
-    private static void write(List<Integer> code, OutputStream out) throws IOException {
+    private static void write(List<Integer> code, BitOutputStream out) throws IOException {
         for (int bit : code)
                 out.write(bit);
         }

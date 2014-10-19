@@ -40,7 +40,8 @@ public class HuffmanTree {
         if (tree instanceof Leaf) {
             Leaf leaf = (Leaf)tree;
 
-            System.out.println(leaf.value + "\t\t" + prefix + "\t\t" + leaf.frequency);
+            System.out.println(leaf.value + "  " + Integer.toHexString(leaf.value) + "\t\t" + prefix + "\t\t" + leaf.frequency);
+
 
         } else if (tree instanceof Node) {
             Node node = (Node) tree;
