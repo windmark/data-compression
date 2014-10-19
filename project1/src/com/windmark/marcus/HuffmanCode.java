@@ -1,80 +1,49 @@
 package com.windmark.marcus;
 
-import java.util.*;
-
-abstract class BinaryTree implements Comparable<BinaryTree> {
-    public final int frequency;
-
-    public BinaryTree(int freq) {
-        frequency = freq;
-    }
-
-    public int compareTo(BinaryTree tree) {
-        return frequency - tree.frequency;
-    }
-}
-
-class TreeNode extends BinaryTree {
-    public final BinaryTree left, right;
-
-    public TreeNode(BinaryTree l, BinaryTree r) {
-        super(l.frequency + r.frequency);
-        left = l;
-        right = r;
-    }
-}
-
-class TreeLeaf extends BinaryTree {
-    public final int value;
-
-    public TreeLeaf(int frequency, int val) {
-        super(frequency);
-        value = val;
-    }
-}
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class HuffmanCode {
 
-    public static BinaryTree buildTree(FrequencyTable frequencies) {
-        PriorityQueue<BinaryTree> codewordTree = new PriorityQueue<BinaryTree>();
+    private ArrayList<List<Integer>> codeTable;
 
-        for (int i = 0; i < frequencies.length(); i++) {
-            if (frequencies.get(i) > 0)
-                codewordTree.add(new TreeLeaf(frequencies.get(i), i));
-        }
-
-        assert codewordTree.size() > 0;
-
-        while (codewordTree.size() > 1) {
-            BinaryTree x = codewordTree.poll();
-            BinaryTree y = codewordTree.poll();
-
-            codewordTree.add(new TreeNode(x, y));
-        }
-        return codewordTree.poll();
-    }
-
-    public static void printCodes(BinaryTree tree, StringBuffer prefix) {
+    public HuffmanCode(BinaryTree tree, int size) {
         assert tree != null;
-        if (tree instanceof TreeLeaf) {
-            TreeLeaf leaf = (TreeLeaf)tree;
+        codeTable = new ArrayList<List<Integer>>();
 
-            System.out.println(leaf.value + "\t" + leaf.frequency + "\t" + prefix);
+        // to be able to insert out of order
+        for (int i = 0; i < size; i++)
+            codeTable.add(null);
 
-        } else if (tree instanceof TreeNode) {
-            TreeNode node = (TreeNode) tree;
+        buildCodes(tree, new ArrayList<Integer>());
+    }
 
-            // traverse left
-            prefix.append('0');
-            printCodes(node.left, prefix);
-            prefix.deleteCharAt(prefix.length() - 1);
 
-            // traverse right
-            prefix.append('1');
-            printCodes(node.right, prefix);
-            prefix.deleteCharAt(prefix.length()-1);
+    public void buildCodes(BinaryTree tree, ArrayList<Integer> prefix) {
+        if (tree instanceof Node) {
+            Node node = (Node) tree;
+
+            // left
+            prefix.add(0);
+            buildCodes(node.left, prefix);
+            prefix.remove(prefix.size() - 1);
+
+            // right
+            prefix.add(1);
+            buildCodes(node.right, prefix);
+            prefix.remove(prefix.size() - 1);
+
+        } else if (tree instanceof Leaf) {
+            Leaf leaf = (Leaf) tree;
+            codeTable.set(leaf.value, new ArrayList<Integer>(prefix));
+
+        } else {
+            throw new AssertionError("Illegal type of node");
         }
     }
+
+    public ArrayList<List<Integer>> get() {
+        return codeTable;
+    }
+
 }

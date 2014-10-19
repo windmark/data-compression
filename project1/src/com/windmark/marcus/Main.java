@@ -1,25 +1,34 @@
 package com.windmark.marcus;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 
 public class Main {
     public static void main(String args[]) throws IOException {
         FileInputStream fileInputStream = null;
-        HuffmanCode huffmanCode = new HuffmanCode();
+        FileOutputStream fileOutputStream = null;
+
         final int bitsInImage = 8;
+        final int size = (int) Math.pow(2, bitsInImage);
 
         try {
             fileInputStream = new FileInputStream("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/test1.raw");
+            fileOutputStream = new FileOutputStream("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/compressed/test1_compressed.raw");
 
-            FrequencyTable frequencies = new FrequencyTable((int) Math.pow(2, bitsInImage));
-            frequencies.generate(fileInputStream);
+            InputStream in = new BufferedInputStream(fileInputStream);
+            OutputStream out = new BufferedOutputStream(fileOutputStream);
 
-            BinaryTree tree = huffmanCode.buildTree(frequencies);
-            System.out.println("Number\tFrequency\tHuffman Code");
-            huffmanCode.printCodes(tree, new StringBuffer());
+
+            FrequencyTable frequencies = new FrequencyTable(size);
+            frequencies.generate(in);
+
+            HuffmanTree huffmanTree = new HuffmanTree(frequencies);
+
+            //System.out.println("Number\tFrequency\tHuffman Code");
+            huffmanTree.printCodes(huffmanTree.getTree(), new StringBuffer());
+
+            HuffmanCode huffmanCode = new HuffmanCode(huffmanTree.getTree(), size);
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

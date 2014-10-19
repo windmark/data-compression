@@ -2,6 +2,7 @@ package com.windmark.marcus;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class FrequencyTable {
     private int[] frequencies;
@@ -12,11 +13,11 @@ public class FrequencyTable {
         frequencies = new int[size];
     }
 
-    public void generate(FileInputStream fileInputStream) {
+    public void generate(InputStream inputStream) {
         int data;
         try {
-            while ((data = fileInputStream.read()) != -1) {
-                data = fileInputStream.read();
+            while ((data = inputStream.read()) != -1) {
+                data = inputStream.read();
                 frequencies[data]++;
 
             }
