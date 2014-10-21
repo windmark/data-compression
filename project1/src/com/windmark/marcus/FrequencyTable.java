@@ -5,10 +5,12 @@ import java.io.*;
 public class FrequencyTable {
     private int[] frequencies;
 
-    public FrequencyTable(int size) {
+    public FrequencyTable(int size, File inputFile) throws IOException {
         if (size < 2)
             throw new IllegalArgumentException("A length of at least 2 is needed");
         frequencies = new int[size];
+
+        generate(inputFile);
     }
 
     public void generate(File inputFile) throws IOException {

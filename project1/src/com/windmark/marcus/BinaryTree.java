@@ -8,7 +8,6 @@ class BinaryTree implements Comparable<BinaryTree> {
         frequency = freq;
     }
 
-
     public int compareTo(BinaryTree tree) {
         return frequency - tree.frequency;
     }
