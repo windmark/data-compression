@@ -10,7 +10,6 @@ import java.io.InputStream;
 public class AdaptiveHuffmanEncode {
     private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF
 
-
     public static void main(String[] args) throws IOException {
 /*
 		if (args.length == 0) {
@@ -33,39 +32,38 @@ public class AdaptiveHuffmanEncode {
             inputStream = new BufferedInputStream(new FileInputStream(inputFile));
             outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
 
-            compress(inputStream, outputStream);
+            encode(inputStream, outputStream);
 
             outputStream.close();
             inputStream.close();
         }
     }
 
-
-    private static void compress(InputStream in, BitOutputStream out) throws IOException {
+    private static void encode(InputStream in, BitOutputStream out) throws IOException {
         CodeFrequency frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
         CodeTree generatedCodeTree= frequencyTable.generateCodeTree();
         CodeWriter codeWriter = new CodeWriter(out, generatedCodeTree);
 
         int count = 0;
         while (true) {
-            int b = in.read();
-            if (b == -1)
-                break;
-            codeWriter.write(b);
+            int bit = in.read();
+            if (bit == -1) break;
 
-            frequencyTable.increment(b);
+            codeWriter.write(bit);
+            frequencyTable.increment(bit);
             count++;
+
+            //////////////////////////////////////////////////////////////////////////
             if (count < 262144 && isPowerOf2(count) || count % 262144 == 0)  // Update code tree
                 codeWriter.setCodeTree((frequencyTable.generateCodeTree()));
-            if (count % 262144 == 0)  // Reset frequency table
+            if (count % 262144 == 0)
                 frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+            //////////////////////////////////////////////////////////////////////////
         }
-        codeWriter.write(256);  // EOF
+        codeWriter.write(256); // EOF
     }
-
 
     private static boolean isPowerOf2(int x) {
         return x > 0 && (x & -x) == x;
     }
-
 }

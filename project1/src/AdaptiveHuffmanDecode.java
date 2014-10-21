@@ -5,11 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Arrays;
 
 
-public final class AdaptiveHuffmanDecode {
-
+public class AdaptiveHuffmanDecode {
     private static final int IMAGE_BIT_SIZE = 257; // 8 bit image, value range of 0-255
 
     public static void main(String[] args) throws IOException {
@@ -24,42 +22,45 @@ public final class AdaptiveHuffmanDecode {
         File outputFile = new File(args[1]);
 */
 
-        for (int i = 1; i <= 5; i++) {
-            File inputFile = new File("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/compressed/test" + i + "-adaptive-mw.raw");
-            File outputFile = new File("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/decompressed/test" + i + "-adaptive-mw.raw");
+        File inputFile, outputFile;
+        BitInputStream inputStream;
+        BufferedOutputStream outputStream;
 
-            BitInputStream in = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
-            OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFile));
-            try {
-                decompress(in, out);
-            } finally {
-                out.close();
-                in.close();
-            }
+        for (int i = 1; i <= 5; i++) {
+            inputFile = new File("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/compressed/test" + i + "-adaptive-mw.raw");
+            outputFile = new File("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/decompressed/test" + i + "-adaptive-mw.raw");
+            inputStream = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
+            outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
+
+            decode(inputStream, outputStream);
+
+            outputStream.close();
+            inputStream.close();
         }
     }
 
 
-    static void decompress(BitInputStream in, OutputStream out) throws IOException {
-        int[] initFreqs = new int[257];
-        Arrays.fill(initFreqs, 1);
-
+    static void decode(BitInputStream in, OutputStream out) throws IOException {
         CodeFrequency freqTable = new CodeFrequency(IMAGE_BIT_SIZE);
-        HuffmanDecoder dec = new HuffmanDecoder(in);
-        dec.codeTree = freqTable.generateCodeTree();
+        CodeTree generatedCodeTree = freqTable.generateCodeTree();
+        CodeReader codeReader = new CodeReader(in, generatedCodeTree);
+
         int count = 0;
         while (true) {
-            int symbol = dec.read();
-            if (symbol == 256)  // EOF value
-                break;
+            int symbol = codeReader.read();
+            if (symbol == 256) break; // EOF
+
             out.write(symbol);
 
             freqTable.increment(symbol);
             count++;
+
+            /////////////////////////////////////////////////////
             if (count < 262144 && isPowerOf2(count) || count % 262144 == 0)  // Update code tree
-                dec.codeTree = freqTable.generateCodeTree();
+                codeReader.setCodeTree(freqTable.generateCodeTree());
             if (count % 262144 == 0)  // Reset frequency table
                 freqTable = new CodeFrequency(IMAGE_BIT_SIZE);
+            /////////////////////////////////////////////////////
         }
     }
 

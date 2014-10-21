@@ -1,5 +1,4 @@
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 
 public class CodeFrequency {
@@ -46,10 +45,10 @@ public class CodeFrequency {
         while (codeQueue.size() > 1) {
             Node node1 = codeQueue.remove();
             Node node2 = codeQueue.remove();
-            codeQueue.add(new InternalNode(node1, node2, node1.getFrequency() + node2.getFrequency()));
+            codeQueue.add(new InnerNode(node1, node2, node1.getFrequency() + node2.getFrequency()));
         }
 
-        InternalNode root = (InternalNode) codeQueue.remove();
+        InnerNode root = (InnerNode) codeQueue.remove();
         CodeTree codeTree = new CodeTree(root, table.length);
         return codeTree;
     }

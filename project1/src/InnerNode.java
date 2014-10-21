@@ -1,10 +1,10 @@
 
 
-public class InternalNode extends Node {
+public class InnerNode extends Node {
     private Node leftChild;
     private Node rightChild;
 
-    public InternalNode(Node leftChild, Node rightChild) {
+    public InnerNode(Node leftChild, Node rightChild) {
         super(-1);
 
         if (leftChild == null || rightChild == null) {
@@ -14,7 +14,7 @@ public class InternalNode extends Node {
         this.rightChild = rightChild;
     }
 
-    public InternalNode(Node leftChild, Node rightChild, int frequency) {
+    public InnerNode(Node leftChild, Node rightChild, int frequency) {
         super(frequency);
 
         if (leftChild == null || rightChild == null) {

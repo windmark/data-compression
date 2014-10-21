@@ -3,10 +3,10 @@ import java.util.List;
 
 
 public class CodeTree {
-    private InternalNode root;
+    private InnerNode root;
     private ArrayList<List<Integer>> codeList;
 
-    public CodeTree(InternalNode root, int symbolLimit) {
+    public CodeTree(InnerNode root, int symbolLimit) {
         if (root == null) {
             throw new NullPointerException("Root node can't be null");
         }
@@ -22,15 +22,15 @@ public class CodeTree {
     }
 
     private void generateCodeList(Node node, ArrayList<Integer> prefix) {
-        if (node instanceof InternalNode) {
-            InternalNode internalNode = (InternalNode) node;
+        if (node instanceof InnerNode) {
+            InnerNode innerNode = (InnerNode) node;
 
             prefix.add(0);
-            generateCodeList(internalNode.getLeftChild(), prefix);
+            generateCodeList(innerNode.getLeftChild(), prefix);
             prefix.remove(prefix.size() - 1);
 
             prefix.add(1);
-            generateCodeList(internalNode.getRightChild(), prefix);
+            generateCodeList(innerNode.getRightChild(), prefix);
             prefix.remove(prefix.size() - 1);
 
         } else if (node instanceof Leaf) {
@@ -52,7 +52,7 @@ public class CodeTree {
         }
     }
 
-    public InternalNode getRoot() {
+    public InnerNode getRoot() {
         return root;
     }
 }
