@@ -20,65 +20,37 @@ public class CodeFrequency {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < table.length; i++)
-            sb.append(String.format("%d\t%d%n", i, table[i]));
-        return sb.toString();
+        String result = "";
+
+        for (int i = 0; i < table.length; i++) {
+            result.concat(i + "\t" + table[i] + "\n");
+        }
+        return result;
     }
 
 
-    public CodeTree buildCodeTree() {
-        PriorityQueue<NodeWithFrequency> codeQueue = new PriorityQueue<NodeWithFrequency>();
+    public CodeTree generateCodeTree() {
+        PriorityQueue<Node> codeQueue = new PriorityQueue<Node>();
 
         for (int i = 0; i < table.length; i++) {
             if (table[i] > 0) {
-                codeQueue.add(new NodeWithFrequency(new Leaf(i), i, table[i]));
+                codeQueue.add(new Leaf(i, table[i]));
             }
         }
 
-        // Pad with zero-frequency symbols until queue has at least 2 items
         for (int i = 0; i < table.length && codeQueue.size() < 2; i++) {
             if (i >= table.length || table[i] == 0)
-                codeQueue.add(new NodeWithFrequency(new Leaf(i), i, 0));
+                codeQueue.add(new Leaf(i, 0));
         }
-        if (codeQueue.size() < 2)
-            throw new AssertionError();
 
-        // Repeatedly tie together two nodes with the lowest frequency
         while (codeQueue.size() > 1) {
-            NodeWithFrequency nf1 = codeQueue.remove();
-            NodeWithFrequency nf2 = codeQueue.remove();
-            codeQueue.add(new NodeWithFrequency(
-                    new InternalNode(nf1.node, nf2.node),
-                    Math.min(nf1.lowestSymbol, nf2.lowestSymbol),
-                    nf1.frequency + nf2.frequency));
+            Node node1 = codeQueue.remove();
+            Node node2 = codeQueue.remove();
+            codeQueue.add(new InternalNode(node1, node2, node1.getFrequency() + node2.getFrequency()));
         }
 
-        // Return the remaining node
-        return new CodeTree((InternalNode)codeQueue.remove().node, table.length);
-    }
-
-
-
-    private static class NodeWithFrequency implements Comparable<NodeWithFrequency> {
-        public final Node node;
-        public final int lowestSymbol;
-        public final long frequency;
-
-        public NodeWithFrequency(Node node, int lowestSymbol, long freq) {
-            this.node = node;
-            this.lowestSymbol = lowestSymbol;
-            this.frequency = freq;
-        }
-
-        public int compareTo(NodeWithFrequency other) {
-            if (frequency < other.frequency || lowestSymbol < other.lowestSymbol) {
-                return -1;
-            } else if (frequency > other.frequency || lowestSymbol > other.lowestSymbol) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }
+        InternalNode root = (InternalNode) codeQueue.remove();
+        CodeTree codeTree = new CodeTree(root, table.length);
+        return codeTree;
     }
 }

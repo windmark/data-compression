@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 
 
 public class AdaptiveHuffmanEncode {
@@ -44,7 +43,7 @@ public class AdaptiveHuffmanEncode {
 
     private static void compress(InputStream in, BitOutputStream out) throws IOException {
         CodeFrequency frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
-        CodeTree generatedCodeTree= frequencyTable.buildCodeTree();
+        CodeTree generatedCodeTree= frequencyTable.generateCodeTree();
         CodeWriter codeWriter = new CodeWriter(out, generatedCodeTree);
 
         int count = 0;
@@ -57,7 +56,7 @@ public class AdaptiveHuffmanEncode {
             frequencyTable.increment(b);
             count++;
             if (count < 262144 && isPowerOf2(count) || count % 262144 == 0)  // Update code tree
-                codeWriter.setCodeTree((frequencyTable.buildCodeTree()));
+                codeWriter.setCodeTree((frequencyTable.generateCodeTree()));
             if (count % 262144 == 0)  // Reset frequency table
                 frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
         }

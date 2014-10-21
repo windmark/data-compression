@@ -46,18 +46,18 @@ public final class AdaptiveHuffmanDecode {
 
         CodeFrequency freqTable = new CodeFrequency(IMAGE_BIT_SIZE);
         HuffmanDecoder dec = new HuffmanDecoder(in);
-        dec.codeTree = freqTable.buildCodeTree();
+        dec.codeTree = freqTable.generateCodeTree();
         int count = 0;
         while (true) {
             int symbol = dec.read();
-            if (symbol == 256)  // EOF symbol
+            if (symbol == 256)  // EOF value
                 break;
             out.write(symbol);
 
             freqTable.increment(symbol);
             count++;
             if (count < 262144 && isPowerOf2(count) || count % 262144 == 0)  // Update code tree
-                dec.codeTree = freqTable.buildCodeTree();
+                dec.codeTree = freqTable.generateCodeTree();
             if (count % 262144 == 0)  // Reset frequency table
                 freqTable = new CodeFrequency(IMAGE_BIT_SIZE);
         }
