@@ -8,7 +8,7 @@ import java.io.OutputStream;
 
 
 public class AdaptiveHuffmanDecode {
-    private static final int IMAGE_BIT_SIZE = 257; // 8 bit image, value range of 0-255
+    private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
 
     public static void main(String[] args) throws IOException {
 /*
@@ -40,7 +40,7 @@ public class AdaptiveHuffmanDecode {
     }
 
 
-    static void decode(BitInputStream in, OutputStream out) throws IOException {
+    private static void decode(BitInputStream in, OutputStream out) throws IOException {
         CodeFrequency freqTable = new CodeFrequency(IMAGE_BIT_SIZE);
         CodeTree generatedCodeTree = freqTable.generateCodeTree();
         CodeReader codeReader = new CodeReader(in, generatedCodeTree);
@@ -51,12 +51,11 @@ public class AdaptiveHuffmanDecode {
             if (symbol == 256) break; // EOF
 
             out.write(symbol);
-
             freqTable.increment(symbol);
             count++;
 
             /////////////////////////////////////////////////////
-            if (count < 262144 && isPowerOf2(count) || count % 262144 == 0)  // Update code tree
+            if (count < 262144 && isPowerOfTwo(count) || count % 262144 == 0)  // Update code tree
                 codeReader.setCodeTree(freqTable.generateCodeTree());
             if (count % 262144 == 0)  // Reset frequency table
                 freqTable = new CodeFrequency(IMAGE_BIT_SIZE);
@@ -65,8 +64,8 @@ public class AdaptiveHuffmanDecode {
     }
 
 
-    private static boolean isPowerOf2(int x) {
-        return x > 0 && (x & -x) == x;
+    private static boolean isPowerOfTwo(int n) {
+        return (n > 0) && ((n & (n - 1)) == 0);
     }
 
 }

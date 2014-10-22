@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.EOFException;
 
 
 public class CodeReader {
@@ -20,7 +21,10 @@ public class CodeReader {
         InnerNode currentNode = codeTree.getRoot();
 
         while (true) {
-            int bit = inputStream.readNoEof();
+            int bit = inputStream.read();
+            if (bit == -1) {
+                throw new EOFException("End of stream reached");
+            }
             Node nextNode;
 
             if (bit == 0) {

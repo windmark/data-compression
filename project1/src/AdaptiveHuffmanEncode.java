@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 
 public class AdaptiveHuffmanEncode {
-    private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF
+    private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
 
     public static void main(String[] args) throws IOException {
 /*
@@ -47,23 +47,27 @@ public class AdaptiveHuffmanEncode {
         int count = 0;
         while (true) {
             int bit = in.read();
-            if (bit == -1) break;
+            if (bit == -1) break; // End of stream
 
             codeWriter.write(bit);
             frequencyTable.increment(bit);
             count++;
 
             //////////////////////////////////////////////////////////////////////////
-            if (count < 262144 && isPowerOf2(count) || count % 262144 == 0)  // Update code tree
-                codeWriter.setCodeTree((frequencyTable.generateCodeTree()));
-            if (count % 262144 == 0)
+            if (count < 262144 && isPowerOfTwo(count) || count % 262144 == 0) {
+                CodeTree updatedCodeTree = frequencyTable.generateCodeTree();
+                codeWriter.setCodeTree(updatedCodeTree);
+            }
+
+            if (count % 262144 == 0) {
                 frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+            }
             //////////////////////////////////////////////////////////////////////////
         }
         codeWriter.write(256); // EOF
     }
 
-    private static boolean isPowerOf2(int x) {
-        return x > 0 && (x & -x) == x;
+    private static boolean isPowerOfTwo(int n) {
+        return (n > 0) && ((n & (n - 1)) == 0);
     }
 }

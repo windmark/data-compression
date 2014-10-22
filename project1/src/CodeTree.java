@@ -6,16 +6,15 @@ public class CodeTree {
     private InnerNode root;
     private ArrayList<List<Integer>> codeList;
 
-    public CodeTree(InnerNode root, int symbolLimit) {
+    public CodeTree(InnerNode root, int codeLength) {
         if (root == null) {
             throw new NullPointerException("Root node can't be null");
         }
         this.root = root;
-
         codeList = new ArrayList<List<Integer>>();
 
         // to be able to insert out of order
-        for (int i = 0; i < symbolLimit; i++) {
+        for (int i = 0; i < codeLength; i++) {
             codeList.add(null);
         }
         generateCodeList(root, new ArrayList<Integer>());
@@ -38,7 +37,7 @@ public class CodeTree {
             codeList.set(leaf.getValue(), new ArrayList<Integer>(prefix));
 
         } else {
-            throw new Error("Illegal node type");
+            throw new IllegalArgumentException("Illegal node type");
         }
     }
 
