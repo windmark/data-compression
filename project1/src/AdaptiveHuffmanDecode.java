@@ -11,38 +11,27 @@ public class AdaptiveHuffmanDecode {
     private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
 
     public static void main(String[] args) throws IOException {
-/*
         if (args.length == 0) {
-            System.err.println("Usage: java AdaptiveHuffmanDecompress InputFile OutputFile");
+            System.err.println("Command line: java AdaptiveHuffmanDecode input_file_name output_file_name");
             System.exit(1);
             return;
         }
 
         File inputFile = new File(args[0]);
         File outputFile = new File(args[1]);
-*/
+        BitInputStream inputStream = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
+        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
 
-        File inputFile, outputFile;
-        BitInputStream inputStream;
-        BufferedOutputStream outputStream;
+        decode(inputStream, outputStream);
 
-        for (int i = 1; i <= 5; i++) {
-            inputFile = new File("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/compressed/test" + i + "-adaptive-mw.raw");
-            outputFile = new File("/home/marcus/Skola/ntnu/dataCompression/project1/testdata/decompressed/test" + i + "-adaptive-mw.raw");
-            inputStream = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
-            outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
-
-            decode(inputStream, outputStream);
-
-            outputStream.close();
-            inputStream.close();
-        }
+        outputStream.close();
+        inputStream.close();
     }
 
 
     private static void decode(BitInputStream in, OutputStream out) throws IOException {
-        CodeFrequency freqTable = new CodeFrequency(IMAGE_BIT_SIZE);
-        CodeTree generatedCodeTree = freqTable.generateCodeTree();
+        CodeFrequency frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+        CodeTree generatedCodeTree = frequencyTable.generateCodeTree();
         CodeReader codeReader = new CodeReader(in, generatedCodeTree);
 
         int count = 0;
@@ -51,16 +40,26 @@ public class AdaptiveHuffmanDecode {
             if (symbol == 256) break; // EOF
 
             out.write(symbol);
-            freqTable.increment(symbol);
+            frequencyTable.increment(symbol);
             count++;
 
             /////////////////////////////////////////////////////
-            if (count < 262144 && isPowerOfTwo(count) || count % 262144 == 0)  // Update code tree
-                codeReader.setCodeTree(freqTable.generateCodeTree());
+            if (isUnbalanced(count)) {
+                CodeTree updatedCodeTree = frequencyTable.generateCodeTree();
+                codeReader.setCodeTree(updatedCodeTree);
+            }
             if (count % 262144 == 0)  // Reset frequency table
-                freqTable = new CodeFrequency(IMAGE_BIT_SIZE);
+                frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
             /////////////////////////////////////////////////////
         }
+    }
+
+    private static boolean isUnbalanced(int count) {
+        boolean isUnbalanced = false;
+        if (count < 262144 && isPowerOfTwo(count) || count % 262144 == 0) {
+            isUnbalanced = true;
+        }
+        return isUnbalanced;
     }
 
 

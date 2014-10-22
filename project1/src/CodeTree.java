@@ -11,6 +11,7 @@ public class CodeTree {
             throw new NullPointerException("Root node can't be null");
         }
         this.root = root;
+
         codeList = new ArrayList<List<Integer>>();
 
         // to be able to insert out of order
@@ -37,7 +38,7 @@ public class CodeTree {
             codeList.set(leaf.getValue(), new ArrayList<Integer>(prefix));
 
         } else {
-            throw new IllegalArgumentException("Illegal node type");
+            throw new Error("Illegal node type");
         }
     }
 
@@ -53,5 +54,31 @@ public class CodeTree {
 
     public InnerNode getRoot() {
         return root;
+    }
+
+
+    public String toString(CodeFrequency frequencies) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format("%-20s%-20s%s%n", "Symbol", "Code", "Frequency"));
+        stringFromCodeTree("", root, stringBuilder, frequencies);
+        return stringBuilder.toString();
+    }
+
+
+    private void stringFromCodeTree(String code, Node node, StringBuilder stringBuilder, CodeFrequency frequencies) {
+        if (node instanceof InnerNode) {
+            InnerNode internalNode = (InnerNode) node;
+
+            stringFromCodeTree(code + "0", internalNode.getLeftChild(), stringBuilder, frequencies);
+            stringFromCodeTree(code + "1", internalNode.getRightChild(), stringBuilder, frequencies);
+        } else if (node instanceof Leaf) {
+            Leaf leaf = (Leaf) node;
+            int value = leaf.getValue();
+            int frequency = frequencies.getFrequency(value);
+
+            stringBuilder.append(String.format("%-20d%-20s%d%n", value, code, frequency));
+        } else {
+            throw new Error("Illegal node type");
+        }
     }
 }

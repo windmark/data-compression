@@ -11,22 +11,16 @@ public class CodeFrequency {
         }
     }
 
+    public int getFrequency(int index) {
+        return table[index];
+    }
+
     public void increment(int index) {
         if (index < 0 || index >= table.length) {
             throw new IllegalArgumentException("Index out of range");
         }
         table[index]++;
     }
-
-    public String toString() {
-        String result = "";
-
-        for (int i = 0; i < table.length; i++) {
-            result.concat(i + "\t" + table[i] + "\n");
-        }
-        return result;
-    }
-
 
     public CodeTree generateCodeTree() {
         PriorityQueue<Node> codeQueue = new PriorityQueue<Node>();
