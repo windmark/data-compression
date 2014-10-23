@@ -3,11 +3,11 @@ import java.io.*;
 
 public class AdaptiveHuffmanEncode {
     private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
-
+    private static final int BIT_COUNT_LIMIT = 65536;
 
     public static void main(String[] args) throws IOException {
 		if (args.length == 0) {
-            System.err.println("Command line: java AdaptiveHuffmanEncode input_file_name output_file_name huffman_table_output_file_name");
+            System.err.println("Usage: java AdaptiveHuffmanEncode input_file_name output_file_name huffman_table_output_file_name");
 			System.exit(1);
 			return;
 		}
@@ -33,25 +33,22 @@ public class AdaptiveHuffmanEncode {
         CodeTree codeTree = frequencyTable.generateCodeTree();
         CodeWriter codeWriter = new CodeWriter(out, codeTree);
 
-        int count = 0;
+        int bitCount = 0;
         while (true) {
             int bit = in.read();
-            if (bit == -1) break; // End of stream
+            if (bit == -1) break; // EOS
 
             codeWriter.write(bit);
             frequencyTable.increment(bit);
-            count++;
+            bitCount++;
 
-            //////////////////////////////////////////////////////////////////////////
-            if (isUnbalanced(count)) {
+            if (isUnbalanced(bitCount)) {
                 CodeTree updatedCodeTree = frequencyTable.generateCodeTree();
                 codeWriter.setCodeTree(updatedCodeTree);
             }
-
-            if (count % 262144 == 0) {
+            if (bitCount % BIT_COUNT_LIMIT == 0) {
                 frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
             }
-            //////////////////////////////////////////////////////////////////////////
         }
         codeWriter.write(256); // EOF
 
@@ -60,9 +57,9 @@ public class AdaptiveHuffmanEncode {
     }
 
 
-    private static boolean isUnbalanced(int count) {
+    private static boolean isUnbalanced(int bitCount) {
         boolean isUnbalanced = false;
-        if (count < 262144 && isPowerOfTwo(count) || count % 262144 == 0) {
+        if (bitCount < BIT_COUNT_LIMIT && isPowerOfTwo(bitCount) || bitCount % BIT_COUNT_LIMIT == 0) {
             isUnbalanced = true;
         }
             return isUnbalanced;

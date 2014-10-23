@@ -31,5 +31,4 @@ public class InnerNode extends Node {
     public Node getRightChild() {
         return rightChild;
     }
-
 }

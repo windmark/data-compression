@@ -11,7 +11,6 @@ public class CodeTree {
             throw new NullPointerException("Root node can't be null");
         }
         this.root = root;
-
         codeList = new ArrayList<List<Integer>>();
 
         // to be able to insert out of order
