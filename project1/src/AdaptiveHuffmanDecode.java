@@ -31,6 +31,8 @@ public class AdaptiveHuffmanDecode {
 
 
     private static void decode(BitInputStream in, OutputStream out) throws IOException {
+        final long startTime = System.currentTimeMillis();
+
         CodeFrequency frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
         CodeTree generatedCodeTree = frequencyTable.generateCodeTree();
         CodeReader codeReader = new CodeReader(in, generatedCodeTree);
@@ -48,10 +50,15 @@ public class AdaptiveHuffmanDecode {
                 CodeTree updatedCodeTree = frequencyTable.generateCodeTree();
                 codeReader.setCodeTree(updatedCodeTree);
             }
-            if (bitCount % BIT_COUNT_LIMIT == 0)
+            if (toLimitFreqTable(bitCount)) {
                 frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+            }
         }
+
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Decoding execution time: " + (endTime - startTime) );
     }
+
 
     private static boolean isUnbalanced(int count) {
         boolean isUnbalanced = false;
@@ -59,6 +66,15 @@ public class AdaptiveHuffmanDecode {
             isUnbalanced = true;
         }
         return isUnbalanced;
+    }
+
+
+    private static boolean toLimitFreqTable(int bitCount) {
+        boolean toLimit = false;
+        if (bitCount % BIT_COUNT_LIMIT == 0) {
+            toLimit = true;
+        }
+        return toLimit;
     }
 
 

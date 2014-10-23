@@ -29,6 +29,8 @@ public class AdaptiveHuffmanEncode {
 
 
     private static void encode(InputStream in, BitOutputStream out, PrintWriter HTOutputStream) throws IOException {
+        final long startTime = System.currentTimeMillis();
+
         CodeFrequency frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
         CodeTree codeTree = frequencyTable.generateCodeTree();
         CodeWriter codeWriter = new CodeWriter(out, codeTree);
@@ -46,11 +48,14 @@ public class AdaptiveHuffmanEncode {
                 CodeTree updatedCodeTree = frequencyTable.generateCodeTree();
                 codeWriter.setCodeTree(updatedCodeTree);
             }
-            if (bitCount % BIT_COUNT_LIMIT == 0) {
+            if (toLimitFreqTable(bitCount)) {
                 frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
             }
         }
         codeWriter.write(256); // EOF
+
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Encoding execution time: " + (endTime - startTime) );
 
         String codeString = codeTree.toString(frequencyTable);
         HTOutputStream.print(codeString);
@@ -63,6 +68,15 @@ public class AdaptiveHuffmanEncode {
             isUnbalanced = true;
         }
             return isUnbalanced;
+    }
+
+
+    private static boolean toLimitFreqTable(int bitCount) {
+        boolean toLimit = false;
+        if (bitCount % BIT_COUNT_LIMIT == 0) {
+            toLimit = true;
+        }
+        return toLimit;
     }
 
 
