@@ -13,7 +13,7 @@ public class CodeTree {
         this.root = root;
         codeList = new ArrayList<List<Integer>>();
 
-        // to be able to insert out of order
+        // Initializes codeList with null to be able to insert out of order
         for (int i = 0; i < codeLength; i++) {
             codeList.add(null);
         }
@@ -35,7 +35,6 @@ public class CodeTree {
         } else if (node instanceof Leaf) {
             Leaf leaf = (Leaf) node;
             codeList.set(leaf.getValue(), new ArrayList<Integer>(prefix));
-
         } else {
             throw new Error("Illegal node type");
         }

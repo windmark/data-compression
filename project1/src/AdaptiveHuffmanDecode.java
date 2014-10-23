@@ -9,7 +9,8 @@ import java.io.OutputStream;
 
 public class AdaptiveHuffmanDecode {
     private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
-    private static final int BIT_COUNT_LIMIT = 65536; // Chosen appropriately for grayscale images
+    private static final int BIT_COUNT_LIMIT = 65536; // Chosen appropriately for grayscale images.
+                                                      // Encoder and decoder must have the same value
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
@@ -17,6 +18,8 @@ public class AdaptiveHuffmanDecode {
             System.exit(1);
             return;
         }
+
+        final long startTime = System.currentTimeMillis();
 
         File inputFile = new File(args[0]);
         File outputFile = new File(args[1]);
@@ -27,12 +30,13 @@ public class AdaptiveHuffmanDecode {
 
         outputStream.close();
         inputStream.close();
+
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Decoding execution time: " + (endTime - startTime) );
     }
 
 
     private static void decode(BitInputStream in, OutputStream out) throws IOException {
-        final long startTime = System.currentTimeMillis();
-
         CodeFrequency frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
         CodeTree generatedCodeTree = frequencyTable.generateCodeTree();
         CodeReader codeReader = new CodeReader(in, generatedCodeTree);
@@ -54,9 +58,6 @@ public class AdaptiveHuffmanDecode {
                 frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
             }
         }
-
-        final long endTime = System.currentTimeMillis();
-        System.out.println("Decoding execution time: " + (endTime - startTime) );
     }
 
 

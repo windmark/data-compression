@@ -1,9 +1,9 @@
 import java.io.*;
 
-
 public class AdaptiveHuffmanEncode {
     private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
-    private static final int BIT_COUNT_LIMIT = 65536;
+    private static final int BIT_COUNT_LIMIT = 65536; // Chosen appropriately for grayscale images.
+                                                      // Encoder and decoder must have the same value
 
     public static void main(String[] args) throws IOException {
 		if (args.length == 0) {
@@ -11,7 +11,9 @@ public class AdaptiveHuffmanEncode {
 			System.exit(1);
 			return;
 		}
-		
+
+        final long startTime = System.currentTimeMillis();
+
 		File inputFile = new File(args[0]);
 		File outputFile = new File(args[1]);
         File HTOutputFile = new File(args[2]);
@@ -25,12 +27,13 @@ public class AdaptiveHuffmanEncode {
         outputStream.close();
         inputStream.close();
         HTOutputStream.close();
+
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Encoding execution time: " + (endTime - startTime) );
     }
 
 
     private static void encode(InputStream in, BitOutputStream out, PrintWriter HTOutputStream) throws IOException {
-        final long startTime = System.currentTimeMillis();
-
         CodeFrequency frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
         CodeTree codeTree = frequencyTable.generateCodeTree();
         CodeWriter codeWriter = new CodeWriter(out, codeTree);
@@ -53,9 +56,6 @@ public class AdaptiveHuffmanEncode {
             }
         }
         codeWriter.write(256); // EOF
-
-        final long endTime = System.currentTimeMillis();
-        System.out.println("Encoding execution time: " + (endTime - startTime) );
 
         String codeString = codeTree.toString(frequencyTable);
         HTOutputStream.print(codeString);

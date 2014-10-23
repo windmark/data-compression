@@ -32,7 +32,7 @@ public class CodeReader {
             } else if (bit == 1) {
                 nextNode = currentNode.getRightChild();
             } else {
-                throw new AssertionError();
+                throw new Error("Bit other than 0 or 1 not permitted.");
             }
 
             if (nextNode instanceof Leaf) {
@@ -40,7 +40,7 @@ public class CodeReader {
             } else if (nextNode instanceof InnerNode) {
                 currentNode = (InnerNode) nextNode;
             } else {
-                throw new AssertionError();
+                throw new Error("Node other than Leaf or InnerNode not permitted");
             }
         }
     }
