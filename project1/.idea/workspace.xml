@@ -2,14 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ff701dd-f5ff-448c-961f-2aa9351b2ed6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java" afterPath="$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java" afterPath="$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeReader.java" afterPath="$PROJECT_DIR$/src/CodeReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeTree.java" afterPath="$PROJECT_DIR$/src/CodeTree.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/encode-function.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hexdump-compressed.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hexdump-raw.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test2-huffmantable.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test5-huffmantable.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/decoded/test1.raw" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/decoded/test2.raw" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/decoded/test3.raw" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/decoded/test4.raw" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/decoded/test5.raw" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test1-huffman-table.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test1.raw" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test2-huffman-table.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test2.raw" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test3-huffman-table.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test3.raw" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test4-huffman-table.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test4.raw" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test5-huffman-table.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdata/encoded/test5.raw" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="project1.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,51 +56,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="changedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/HuffmanCompress.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/HuffmanCode.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/BitOutputStream.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/HuffmanEncoder.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/FrequencyTable.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/BinaryTree.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/HuffmanTree.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/CodeTable.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/CodeTree.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/BitInputStream.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/HuffmanEncode.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/HuffmanDecode.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/AdaptiveHuffmanCode.java" />
-        <option value="$PROJECT_DIR$/src/com/windmark/marcus/AdaptiveHuffmanEncode.java" />
-        <option value="$PROJECT_DIR$/src/nayuki/huffmancoding/AdaptiveHuffmanCompress.java" />
-        <option value="$PROJECT_DIR$/src/BinaryTree.java" />
-        <option value="$PROJECT_DIR$/src/HuffmanEncoder.java" />
-        <option value="$PROJECT_DIR$/src/FrequencyTable.java" />
-        <option value="$PROJECT_DIR$/src/Leaf.java" />
-        <option value="$PROJECT_DIR$/src/HuffmanDecoder.java" />
-        <option value="$PROJECT_DIR$/src/Node.java" />
-        <option value="$PROJECT_DIR$/src/InternalNode.java" />
-        <option value="$PROJECT_DIR$/src/CodeWriter.java" />
-        <option value="$PROJECT_DIR$/src/BitOutputStream.java" />
-        <option value="$PROJECT_DIR$/src/BitInputStream.java" />
-        <option value="$PROJECT_DIR$/src/CodeFrequency.java" />
-        <option value="$PROJECT_DIR$/src/InnerNode.java" />
-        <option value="$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java" />
-        <option value="$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java" />
-        <option value="$PROJECT_DIR$/src/CodeReader.java" />
-        <option value="$PROJECT_DIR$/src/CodeTree.java" />
-      </list>
-    </option>
-  </component>
   <component name="MavenProjectNavigator">
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="36" />
+    <option name="y" value="32" />
     <option name="width" value="1366" />
-    <option name="height" value="732" />
+    <option name="height" value="736" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -110,7 +90,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -146,6 +125,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,6 +253,7 @@
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -315,6 +296,7 @@
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -377,35 +359,37 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="9ff701dd-f5ff-448c-961f-2aa9351b2ed6" name="Default" comment="" />
       <created>1412662562662</created>
+      <option name="number" value="Default" />
       <updated>1412662562662</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="36" width="1366" height="732" extended-state="0" />
+    <frame x="0" y="32" width="1366" height="736" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2897196" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24963397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34087238" sideWeight="0.7212991" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.328" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13396779" sideWeight="0.5011287" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271028" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17371601" sideWeight="0.49887133" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34087238" sideWeight="0.7212991" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271028" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
@@ -430,6 +414,7 @@
     <breakpoint-manager>
       <option name="time" value="28" />
     </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -440,7 +425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1458">
           <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -448,7 +432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1368">
           <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="108" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -470,7 +453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21328671" vertical-offset="850" max-vertical-offset="1494">
           <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -478,7 +460,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.93559927" vertical-offset="989" max-vertical-offset="1620">
           <caret line="86" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -486,7 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="774">
           <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -494,9 +474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42495784" vertical-offset="0" max-vertical-offset="846">
           <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -504,9 +481,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6357504" vertical-offset="343" max-vertical-offset="954">
           <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-          <folding>
-            <element signature="e#616#622#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -514,9 +488,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39291736" vertical-offset="523" max-vertical-offset="1116">
           <caret line="42" column="80" selection-start-line="42" selection-start-column="80" selection-end-line="42" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -524,7 +495,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45531198" vertical-offset="378" max-vertical-offset="1530">
           <caret line="37" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -532,9 +502,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33389544" vertical-offset="162" max-vertical-offset="774">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -542,7 +509,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8802698" vertical-offset="0" max-vertical-offset="648">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -550,7 +516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.060708262" vertical-offset="0" max-vertical-offset="593">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -558,10 +523,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.060708262" vertical-offset="0" max-vertical-offset="593">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="394">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
   </component>
 </project>
-
