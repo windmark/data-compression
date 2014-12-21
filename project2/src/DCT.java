@@ -83,7 +83,7 @@ public class DCT {
 
         // then transforms columns
         for (int column = 0; column < blockSize; column++) {
-            double[] transformedColumn = forwardDCT1D(getColumn(inBlock, column));
+            double[] transformedColumn = forwardDCT1D(getColumn(outBlock, column));
             insertColumn(outBlock, transformedColumn, column);
         }
         return outBlock;
@@ -129,7 +129,7 @@ public class DCT {
 
         // then columns
         for (int column = 0; column < blockSize; column++) {
-            double[] transformedColumn = inverseDCT1D(getColumn(inBlock, column));
+            double[] transformedColumn = inverseDCT1D(getColumn(outBlock, column));
             insertColumn(outBlock, transformedColumn, column);
         }
         return outBlock;

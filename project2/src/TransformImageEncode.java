@@ -25,7 +25,33 @@ public class TransformImageEncode {
         BitOutputStream outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
         PrintWriter HTOutputStream = new PrintWriter(HTOutputFile);
 
-
+//////////////////
+        double[][] m = {
+            {
+                162, 162, 162, 161, 160, 160, 161, 162
+            },
+            {
+                161, 162, 162, 162, 160, 160, 161, 162
+            },
+            {
+                162, 162, 162, 162, 161, 160, 161, 161
+            },
+            {
+                163, 163, 162, 161, 161, 161, 161, 162
+            },
+            {
+                165, 163, 161, 160, 160, 160, 161, 162
+            },
+            {
+                164, 163, 160, 159, 159, 160, 161, 161
+            },
+            {
+                162, 160, 159, 158, 159, 159, 158, 158
+            },
+            {
+                159, 159, 158, 158, 159, 158, 156, 155
+            }
+        };
 
 
 
@@ -35,6 +61,11 @@ public class TransformImageEncode {
         int[][] imageMatrix = imageToMatrix(inputStream);
         ArrayList<double[][]> tileList = imageToMatrix(imageMatrix);
         ArrayList<double[][]> dctTileList = new ArrayList<double[][]>(tileList.size());
+
+        ////
+        tileList.add(0, m);
+
+        ////
 
         for (double[][] tile : tileList) {
             dctTileList.add(dctTransformation.forwardDCT(tile));
