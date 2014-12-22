@@ -8,6 +8,7 @@ public class TransformImageEncode {
 
 
 
+
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
             System.err.println("Usage: java TransformImageEncode input_file_name output_file_name huffman_table_output_file_name");
@@ -53,23 +54,46 @@ public class TransformImageEncode {
             }
         };
 
+        int quantum[][] = new int[8][8];
+
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                quantum[i][j] = (1 + ((1 + i + j)));
+            }
+        }
+
+
+/////////////////////
 
 
         //////// DO STUFF
         DCT dctTransformation = new DCT(BLOCK_SIZE);
 
         int[][] imageMatrix = imageToMatrix(inputStream);
-        ArrayList<double[][]> tileList = imageToMatrix(imageMatrix);
+        ArrayList<double[][]> tileList = imageToTiles(imageMatrix);
         ArrayList<double[][]> dctTileList = new ArrayList<double[][]>(tileList.size());
 
-        ////
+        //// TEMPORARY MATRIX FOR CHECKING VALUES
         tileList.add(0, m);
-
         ////
 
         for (double[][] tile : tileList) {
             dctTileList.add(dctTransformation.forwardDCT(tile));
         }
+
+
+        ScalarQuantization quantize = new ScalarQuantization(BLOCK_SIZE);
+
+
+
+
+
+
+
+
+
 
 
         ArrayList<double[][]> inverseDctTileList = new ArrayList<double[][]>(dctTileList.size());
@@ -93,9 +117,8 @@ public class TransformImageEncode {
             }
         }
         if (sum > 1) {
-            System.err.println("INVERSE DCT ERROR LARGER THAN 1");
+            System.err.println("INVERSE DCT ERROR, IS TOO LARGE: " + sum);
         }
-        System.out.println("Inverse DCT error: " + sum);
         ///////////////////////////////
 
 
@@ -110,7 +133,7 @@ public class TransformImageEncode {
 
 
 
-    private static ArrayList<double[][]> imageToMatrix(int[][] imageMatrix) {
+    private static ArrayList<double[][]> imageToTiles(int[][] imageMatrix) {
         int width = imageMatrix.length;
         int height = imageMatrix[0].length;
 
@@ -122,14 +145,18 @@ public class TransformImageEncode {
                 int xpos = j * BLOCK_SIZE;
                 int ypos = i * BLOCK_SIZE;
 
-                // Doing this for structural purposes
+                // Doing this for structural purposes. ArrayLists and such. Despite using more memory and accesses.
                 double[][] tile = new double[BLOCK_SIZE][BLOCK_SIZE];
+                double meanValue = 0;
 
                 for (int a = 0; a < BLOCK_SIZE; a++) {
                     for (int b = 0; b < BLOCK_SIZE; b++) {
                         tile[a][b] = imageMatrix[xpos + a][ypos + b];
+                        meanValue += imageMatrix[xpos + a][ypos + b];
                     }
                 }
+                /// Possibly remove mean value later. See slides. Not sure how to recreate.
+                meanValue = meanValue / (BLOCK_SIZE * BLOCK_SIZE);
                 tileList.add(tile);
             }
         }
@@ -148,11 +175,4 @@ public class TransformImageEncode {
         }
         return matrix;
     }
-
-
-
-
-
-
-
 }
