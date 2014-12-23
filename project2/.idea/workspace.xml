@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78c6fb49-81a8-4e94-92fa-8b6dcabfddf9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TransformImageDecode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/AdaptiveHuffmanDecode.class" afterPath="$PROJECT_DIR$/out/production/project2/AdaptiveHuffmanDecode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/AdaptiveHuffmanEncode.class" afterPath="$PROJECT_DIR$/out/production/project2/AdaptiveHuffmanEncode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/BitOutputStream.class" afterPath="$PROJECT_DIR$/out/production/project2/BitOutputStream.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/CodeReader.class" afterPath="$PROJECT_DIR$/out/production/project2/CodeReader.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/ScalarQuantization.class" afterPath="$PROJECT_DIR$/out/production/project2/ScalarQuantization.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/TransformImageDecode.class" afterPath="$PROJECT_DIR$/out/production/project2/TransformImageDecode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/TransformImageEncode.class" afterPath="$PROJECT_DIR$/out/production/project2/TransformImageEncode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testdata/encoded/test1_mw.raw" afterPath="$PROJECT_DIR$/testdata/encoded/test1_mw.raw" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testdata/encoded/test2_mw.raw" afterPath="$PROJECT_DIR$/testdata/encoded/test2_mw.raw" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java" afterPath="$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java" afterPath="$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BitOutputStream.java" afterPath="$PROJECT_DIR$/src/BitOutputStream.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeReader.java" afterPath="$PROJECT_DIR$/src/CodeReader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ScalarQuantization.java" afterPath="$PROJECT_DIR$/src/ScalarQuantization.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TransformImageDecode.java" afterPath="$PROJECT_DIR$/src/TransformImageDecode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TransformImageEncode.java" afterPath="$PROJECT_DIR$/src/TransformImageEncode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -44,11 +41,11 @@
       <file leaf-file-name="TransformImageEncode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TransformImageEncode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="2088">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="2070">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2626#2632#0" expanded="true" />
+                <element signature="e#2556#2562#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,10 +54,34 @@
       <file leaf-file-name="TransformImageDecode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TransformImageDecode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1433" max-vertical-offset="1818">
-              <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1800">
+              <caret line="24" column="80" selection-start-line="24" selection-start-column="80" selection-end-line="24" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScalarQuantization.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ScalarQuantization.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="2466">
+              <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdaptiveHuffmanEncode.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.47532466" vertical-offset="375" max-vertical-offset="2124">
+              <caret line="31" column="58" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
+              <folding>
+                <element signature="method#encode#0;class#AdaptiveHuffmanEncode#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -69,29 +90,14 @@
       <file leaf-file-name="AdaptiveHuffmanDecode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="858" max-vertical-offset="2610">
-              <caret line="67" column="23" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CodeWriter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/CodeWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49748743" vertical-offset="54" max-vertical-offset="756">
-              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CodeFrequency.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CodeFrequency.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="954">
-              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="434" max-vertical-offset="1872">
+              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="2" />
+              <folding>
+                <element signature="method#main#0;class#AdaptiveHuffmanDecode#0" expanded="false" />
+                <element signature="method#decode#0;class#AdaptiveHuffmanDecode#0" expanded="false" />
+                <element signature="e#4663#4664#0" expanded="true" />
+                <element signature="e#4717#4718#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,14 +116,14 @@
         <option value="$PROJECT_DIR$/src/Tile.java" />
         <option value="$PROJECT_DIR$/src/CodeReader.java" />
         <option value="$PROJECT_DIR$/src/CodeTree.java" />
-        <option value="$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java" />
         <option value="$PROJECT_DIR$/src/DCT.java" />
-        <option value="$PROJECT_DIR$/src/ScalarQuantization.java" />
         <option value="$PROJECT_DIR$/src/BitOutputStream.java" />
-        <option value="$PROJECT_DIR$/src/TransformImageEncode.java" />
-        <option value="$PROJECT_DIR$/src/TransformImageDecode.java" />
-        <option value="$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java" />
         <option value="$PROJECT_DIR$/src/CodeWriter.java" />
+        <option value="$PROJECT_DIR$/src/TransformImageDecode.java" />
+        <option value="$PROJECT_DIR$/src/ScalarQuantization.java" />
+        <option value="$PROJECT_DIR$/src/TransformImageEncode.java" />
+        <option value="$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java" />
+        <option value="$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java" />
       </list>
     </option>
   </component>
@@ -204,7 +210,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="TransformImageEncode" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="testdata/test1.raw testdata/encoded/test1_mw.raw testdata/encoded/test1_mw_huffman.txt" />
+      <option name="PROGRAM_PARAMETERS" value="testdata/test2.raw testdata/encoded/test2_mw.raw testdata/encoded/test2_mw_huffman.txt" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -250,7 +256,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="TransformImageDecode" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="testdata/encoded/test1_mw.raw testdata/decoded/test1_mw.raw" />
+      <option name="PROGRAM_PARAMETERS" value="testdata/encoded/test2_mw.raw testdata/decoded/test2_mw.raw" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -448,9 +454,9 @@
     <recent_temporary>
       <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Application.TransformImageDecode" />
-        <item index="1" class="java.lang.String" itemvalue="Application.AdaptiveHuffmanDecode" />
-        <item index="2" class="java.lang.String" itemvalue="Application.AdaptiveHuffmanEncode" />
-        <item index="3" class="java.lang.String" itemvalue="Application.TransformImageEncode" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TransformImageEncode" />
+        <item index="2" class="java.lang.String" itemvalue="Application.AdaptiveHuffmanDecode" />
+        <item index="3" class="java.lang.String" itemvalue="Application.AdaptiveHuffmanEncode" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -492,8 +498,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="32" width="1366" height="736" extended-state="7" />
-    <editor active="true" />
+    <frame x="0" y="32" width="1366" height="736" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -514,7 +520,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18202417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31942216" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31942216" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -542,27 +548,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TransformImageDecode.java</url>
-          <line>54</line>
+          <line>53</line>
           <properties />
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TransformImageEncode.java</url>
-          <line>59</line>
+          <line>58</line>
           <properties />
           <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java</url>
-          <line>57</line>
-          <properties />
-          <option name="timeStamp" value="102" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java</url>
-          <line>63</line>
-          <properties />
-          <option name="timeStamp" value="103" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java</url>
@@ -571,31 +565,25 @@
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java</url>
-          <line>56</line>
-          <properties />
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TransformImageDecode.java</url>
-          <line>51</line>
+          <line>50</line>
           <properties />
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TransformImageDecode.java</url>
-          <line>48</line>
+          <line>47</line>
           <properties />
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TransformImageEncode.java</url>
-          <line>24</line>
+          <line>23</line>
           <properties />
           <option name="timeStamp" value="114" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="115" />
+      <option name="time" value="116" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -610,7 +598,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2626#2632#0" expanded="true" />
+            <element signature="e#2556#2562#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -639,7 +627,7 @@
           <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2626#2632#0" expanded="true" />
+            <element signature="e#2556#2562#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -689,27 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="2592">
-          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
-          <folding>
-            <element signature="e#4559#4560#0" expanded="true" />
-            <element signature="e#4613#4614#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ScalarQuantization.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1990" max-vertical-offset="2484">
-          <caret line="123" column="27" selection-start-line="123" selection-start-column="27" selection-end-line="123" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DCT.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="3096">
@@ -726,27 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TransformImageEncode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="2088">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2626#2632#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TransformImageDecode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1433" max-vertical-offset="1818">
-          <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeFrequency.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="954">
@@ -755,19 +701,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java">
+    <entry file="file://$PROJECT_DIR$/src/CodeWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="858" max-vertical-offset="2610">
-          <caret line="67" column="23" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+        <state vertical-scroll-proportion="1.040201" vertical-offset="0" max-vertical-offset="756">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CodeWriter.java">
+    <entry file="file://$PROJECT_DIR$/src/TransformImageDecode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49748743" vertical-offset="54" max-vertical-offset="756">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1800">
+          <caret line="24" column="80" selection-start-line="24" selection-start-column="80" selection-end-line="24" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ScalarQuantization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="2466">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TransformImageEncode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="2070">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2556#2562#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdaptiveHuffmanDecode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="434" max-vertical-offset="1872">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="2" />
+          <folding>
+            <element signature="method#main#0;class#AdaptiveHuffmanDecode#0" expanded="false" />
+            <element signature="method#decode#0;class#AdaptiveHuffmanDecode#0" expanded="false" />
+            <element signature="e#4663#4664#0" expanded="true" />
+            <element signature="e#4717#4718#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47532466" vertical-offset="375" max-vertical-offset="2124">
+          <caret line="31" column="58" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
+          <folding>
+            <element signature="method#encode#0;class#AdaptiveHuffmanEncode#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

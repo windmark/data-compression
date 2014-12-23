@@ -7,7 +7,6 @@ public class TransformImageEncode {
     private static final int IMAGE_WIDTH = 1600;
     private static final int IMAGE_HEIGHT = 1200;
     private static final int TILE_SIZE = 8;
-    private static final int QUANTIZE_QUALITY = 25;
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
@@ -37,7 +36,7 @@ public class TransformImageEncode {
         ArrayList<Tile> tileList = initTiles(imageMatrix);
 
         DCT dctTransformation = new DCT(TILE_SIZE);
-        ScalarQuantization scalarQuantization = new ScalarQuantization(TILE_SIZE, QUANTIZE_QUALITY);
+        ScalarQuantization scalarQuantization = new ScalarQuantization(TILE_SIZE);
 
 
 

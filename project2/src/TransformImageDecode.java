@@ -5,7 +5,6 @@ public class TransformImageDecode {
     private static final int IMAGE_WIDTH = 1600;
     private static final int IMAGE_HEIGHT = 1200;
     private static final int TILE_SIZE = 8;
-    private static final int QUANTIZE_QUALITY = 25;
 
 
     public static void main(String[] args) throws IOException {
@@ -23,7 +22,7 @@ public class TransformImageDecode {
         BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
 
         AdaptiveHuffmanDecode decode = new AdaptiveHuffmanDecode(inputStream, TILE_SIZE);
-        ScalarQuantization scalarQuantization = new ScalarQuantization(TILE_SIZE, QUANTIZE_QUALITY);
+        ScalarQuantization scalarQuantization = new ScalarQuantization(TILE_SIZE);
         DCT dctTransformation = new DCT(TILE_SIZE);
 
         ArrayList<double[][]> inverseDctTileList = new ArrayList<double[][]>();

@@ -82,9 +82,11 @@ public class AdaptiveHuffmanDecode {
     private int bitCount = 0;
 
     public int[] decodeQuantized(BitInputStream in) throws IOException {
+/*
         this.frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
         this.generatedCodeTree = frequencyTable.generateCodeTree();
         this.codeReader = new CodeReader(in, generatedCodeTree);
+*/
 
         int i = 0;
         int[] values = new int[tileSize * tileSize];

@@ -9,14 +9,14 @@ public class ScalarQuantization {
 
 
 
-    public ScalarQuantization(int blockSize, int quality) {
+    public ScalarQuantization(int blockSize) {
         this.blockSize = blockSize;
         this.blockValueCount = blockSize * blockSize;
         zigZagTable = new int[blockValueCount][2];
         initZigZagTable(zigZagTable);
 
 
-        quantizeTable = initQuantizeTable(quality);
+        quantizeTable = initQuantizeTable();
     }
 
 
@@ -26,7 +26,7 @@ public class ScalarQuantization {
 
 
     // Sample jpeg quantization table as seen in slides
-    private int[][] initQuantizeTable(int quality) {
+    private int[][] initQuantizeTable() {
         int[][] quantizeTable = {
                 {16, 11, 10, 16, 24, 40, 51, 61},
                 {12, 12, 14, 19, 26, 58, 60, 55},
@@ -37,7 +37,6 @@ public class ScalarQuantization {
                 {49, 64, 78, 87, 103, 121, 120, 101},
                 {72, 92, 95, 98, 112, 100, 103, 99}
         };
-
         return quantizeTable;
 
 /*

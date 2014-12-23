@@ -81,9 +81,11 @@ public class AdaptiveHuffmanEncode {
     private int bitCount = 0;
 
     public void encodeQuantized(int[] values, BitOutputStream out, PrintWriter HTOutputStream) throws IOException {
+/*
         this.frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
         this.codeTree = frequencyTable.generateCodeTree();
         this.codeWriter = new CodeWriter(out, codeTree);
+*/
 
         for (int i = 0; i < values.length; i++) {
             int value;
