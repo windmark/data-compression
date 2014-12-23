@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class TransformImageEncode {
     private static final int IMAGE_WIDTH = 512;
     private static final int IMAGE_HEIGHT = 512;
-    private static final int BLOCK_SIZE = 8;
+    private static final int TILE_SIZE = 8;
     private static final int QUANTIZE_QUALITY = 25; // Test values, higher should be better
 
     public static void main(String[] args) throws IOException {
@@ -29,30 +29,43 @@ public class TransformImageEncode {
         ////////////////////////////////////////
         ////////////////DO STUFF////////////////
         ////////////////////////////////////////
+        // ENCODE
         int[][] imageMatrix = imageToMatrix(inputStream);
-        ArrayList<double[][]> tileList = imageToTiles(imageMatrix);
 
-        DCT dctTransformation = new DCT(BLOCK_SIZE);
-        ScalarQuantization scalarQuantization = new ScalarQuantization(BLOCK_SIZE, QUANTIZE_QUALITY);
+        ArrayList<Tile> tileList = initTiles(imageMatrix);
+
+        DCT dctTransformation = new DCT(TILE_SIZE);
+        ScalarQuantization scalarQuantization = new ScalarQuantization(TILE_SIZE, QUANTIZE_QUALITY);
 
 
 
         ArrayList<double[][]> dctTileList = new ArrayList<double[][]>(tileList.size());
-        ArrayList<int[]> quantizeList = new ArrayList<int[]>(BLOCK_SIZE * BLOCK_SIZE);
-        ArrayList<double[][]> deQuantizeList = new ArrayList<double[][]>(BLOCK_SIZE * BLOCK_SIZE);
-        ArrayList<double[][]> inverseDctTileList = new ArrayList<double[][]>(dctTileList.size());
+        ArrayList<int[]> quantizeList = new ArrayList<int[]>(TILE_SIZE * TILE_SIZE);
 
-        double[][] x, y;
+        AdaptiveHuffmanEncode encode = new AdaptiveHuffmanEncode();
 
-
-
+        double[][] tile;
         for (int i = 0; i < tileList.size(); i++) {
-            dctTileList.add(dctTransformation.forwardDCT(tileList.get(i)));
+            tile = tileList.get(i).getTile();
+            dctTileList.add(dctTransformation.forwardDCT(tile));
             quantizeList.add(scalarQuantization.quantize(dctTileList.get(i)));
+            //encode.encodeQuantized(quantizeList.get(i), outputStream, HTOutputStream);
 
-            x = scalarQuantization.deQuantize(quantizeList.get(i));
-            y = dctTransformation.inverseDCT(x);
-            deQuantizeList.add(y);
+        }
+
+
+
+
+
+
+        // DECODE
+        ArrayList<double[][]> inverseDctTileList = new ArrayList<double[][]>(dctTileList.size());
+        for (int i = 0; i < quantizeList.size(); i++) {
+            inverseDctTileList.add(
+                    dctTransformation.inverseDCT(
+                        scalarQuantization.deQuantize(quantizeList.get(i))
+                    )
+            );
         }
 
 
@@ -62,27 +75,6 @@ public class TransformImageEncode {
 
 
 
-
-
-
-
-        //////////A TEMPORARY CHECK TO SEE THE DIFFERENCE BEFORE AND AFTER DCT AND INVERSE DCT
-        double sum = 0;
-
-        for (int h = 0; h < tileList.size(); h++) {
-            double[][] a = tileList.get(h);
-            double[][] b = inverseDctTileList.get(h);
-
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    sum += (b[i][j] - a[i][j]);
-                }
-            }
-        }
-        if (sum > 1) {
-            System.err.println("INVERSE DCT ERROR, IS TOO LARGE: " + sum);
-        }
-        ///////////////////////////////
 
 
         outputStream.close();
@@ -95,37 +87,34 @@ public class TransformImageEncode {
 
 
 
-
-    private static ArrayList<double[][]> imageToTiles(int[][] imageMatrix) {
+    private static ArrayList<Tile> initTiles(int[][] imageMatrix) {
         int width = imageMatrix.length;
         int height = imageMatrix[0].length;
 
-        ArrayList<double[][]> tileList = new ArrayList<double[][]>();
+        ArrayList<Tile> tileList = new ArrayList<Tile>();
 
-
-        for (int i = 0; i < height / BLOCK_SIZE; i++) {
-            for (int j = 0; j < width / BLOCK_SIZE; j++) {
-                int xpos = j * BLOCK_SIZE;
-                int ypos = i * BLOCK_SIZE;
+        for (int i = 0; i < height / TILE_SIZE; i++) {
+            for (int j = 0; j < width / TILE_SIZE; j++) {
+                int xpos = j * TILE_SIZE;
+                int ypos = i * TILE_SIZE;
 
                 // Doing this for structural purposes. ArrayLists and such. Despite using more memory and accesses.
-                double[][] tile = new double[BLOCK_SIZE][BLOCK_SIZE];
-                double meanValue = 0;
+                double[][] tile = new double[TILE_SIZE][TILE_SIZE];
+                double totalValue = 0;
 
-                for (int a = 0; a < BLOCK_SIZE; a++) {
-                    for (int b = 0; b < BLOCK_SIZE; b++) {
+                for (int a = 0; a < TILE_SIZE; a++) {
+                    for (int b = 0; b < TILE_SIZE; b++) {
                         tile[a][b] = imageMatrix[xpos + a][ypos + b];
-                        meanValue += imageMatrix[xpos + a][ypos + b];
+                        totalValue += imageMatrix[xpos + a][ypos + b];
                     }
                 }
-                /// Possibly remove mean value later. See slides. Not sure how to recreate.
-                meanValue = meanValue / (BLOCK_SIZE * BLOCK_SIZE);
-                tileList.add(tile);
+                double meanValue = totalValue / (TILE_SIZE * TILE_SIZE);
+                Tile tileObject = new Tile(tile, meanValue);
+                tileList.add(tileObject);
             }
         }
         return tileList;
     }
-
 
 
     private static int[][] imageToMatrix(BufferedInputStream in) throws IOException {

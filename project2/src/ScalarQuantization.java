@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class ScalarQuantization {
     private final int blockSize;
     private final int blockValueCount;
@@ -12,8 +15,8 @@ public class ScalarQuantization {
         zigZagTable = new int[blockValueCount][2];
         initZigZagTable(zigZagTable);
 
-        quantizeTable = new int[blockSize][blockSize];
-        initQuantizeTable(quantizeTable, quality);
+
+        quantizeTable = initQuantizeTable(quality);
     }
 
 
@@ -23,9 +26,8 @@ public class ScalarQuantization {
 
 
     // Sample jpeg quantization table as seen in slides
-    private void initQuantizeTable(int[][] quantizeTable, int quality) {
-
-        quantizeTable = new int[][]{
+    private int[][] initQuantizeTable(int quality) {
+        int[][] quantizeTable = {
                 {16, 11, 10, 16, 24, 40, 51, 61},
                 {12, 12, 14, 19, 26, 58, 60, 55},
                 {14, 13, 16, 24, 40, 57, 69, 56},
@@ -35,6 +37,8 @@ public class ScalarQuantization {
                 {49, 64, 78, 87, 103, 121, 120, 101},
                 {72, 92, 95, 98, 112, 100, 103, 99}
         };
+
+        return quantizeTable;
 
 /*
         for (int i = 0; i < blockSize; i++) {
@@ -83,16 +87,31 @@ public class ScalarQuantization {
 
     public int[] quantize(double[][] block) {
         int[] quantized = new int[blockValueCount];
-        int row, col;
-        double result;
+        int row, col, result;
+
 
         for (int i = 0; i < blockValueCount; i++) {
             row = zigZagTable[i][0];
             col = zigZagTable[i][1];
-            result = block[row][col] / quantizeTable[row][col];
-            quantized[i] = (int) Math.round(result);
+            result = (int) Math.round(block[row][col] / quantizeTable[row][col]);
+
+            quantized[i] = result;
         }
-        return quantized;
+
+        int[] minimized = removeTrailingZeroes(quantized);
+        return minimized;
+    }
+
+
+    private int[] removeTrailingZeroes(int[] array) {
+        int i = array.length;
+
+        // Backward traverses until non-zero
+        while (i-- > 0 && array[i] == 0) {}
+        int[] output = new int[i+1];
+        System.arraycopy(array, 0, output, 0, i+1);
+
+        return output;
     }
 
 

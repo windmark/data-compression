@@ -62,6 +62,43 @@ public class AdaptiveHuffmanEncode {
     }
 
 
+    public void encodeQuantized(int[] values, BitOutputStream out, PrintWriter HTOutputStream) throws IOException {
+        CodeFrequency frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+        CodeTree codeTree = frequencyTable.generateCodeTree();
+        CodeWriter codeWriter = new CodeWriter(out, codeTree);
+
+
+        int bitCount = 0;
+        for (int i = 0; i < values.length; i++) {
+
+        }
+
+
+/*
+        while (true) {
+            int bit = in.read();
+            if (bit == -1) break; // EOS
+
+            codeWriter.write(bit);
+            frequencyTable.increment(bit);
+            bitCount++;
+
+            if (isUnbalanced(bitCount)) {
+                CodeTree updatedCodeTree = frequencyTable.generateCodeTree();
+                codeWriter.setCodeTree(updatedCodeTree);
+            }
+            if (toLimitFreqTable(bitCount)) {
+                frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+            }
+        }
+        codeWriter.write(256); // EOF
+
+        String codeString = codeTree.toString(frequencyTable);
+        HTOutputStream.print(codeString);
+*/
+    }
+
+
     private static boolean isUnbalanced(int bitCount) {
         boolean isUnbalanced = false;
         if (bitCount < BIT_COUNT_LIMIT && isPowerOfTwo(bitCount) || bitCount % BIT_COUNT_LIMIT == 0) {
