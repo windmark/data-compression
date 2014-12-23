@@ -1,9 +1,23 @@
 import java.io.*;
 
 public class AdaptiveHuffmanEncode {
-    private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
-    private static final int BIT_COUNT_LIMIT = 65536; // Chosen appropriately for grayscale images.
+    private static int IMAGE_BIT_SIZE;
+    private static int BIT_COUNT_LIMIT = 65536; // Chosen appropriately for grayscale images.
                                                       // Encoder and decoder must have the same value
+    private CodeFrequency frequencyTable;
+    private CodeTree codeTree;
+    private CodeWriter codeWriter;
+
+
+    public AdaptiveHuffmanEncode(BitOutputStream out) {
+        this.IMAGE_BIT_SIZE = 513; // 8 bit for positive + 8 bit for negative + 1 EOF
+        this.frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+        this.codeTree = frequencyTable.generateCodeTree();
+        this.codeWriter = new CodeWriter(out, codeTree);
+
+
+    }
+
 
     public static void main(String[] args) throws IOException {
 		if (args.length == 0) {
@@ -11,6 +25,9 @@ public class AdaptiveHuffmanEncode {
 			System.exit(1);
 			return;
 		}
+
+        IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
+
 
         final long startTime = System.currentTimeMillis();
 
@@ -61,17 +78,23 @@ public class AdaptiveHuffmanEncode {
         HTOutputStream.print(codeString);
     }
 
+    private int bitCount = 0;
 
     public void encodeQuantized(int[] values, BitOutputStream out, PrintWriter HTOutputStream) throws IOException {
-        CodeFrequency frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
-        CodeTree codeTree = frequencyTable.generateCodeTree();
-        CodeWriter codeWriter = new CodeWriter(out, codeTree);
+        this.frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+        this.codeTree = frequencyTable.generateCodeTree();
+        this.codeWriter = new CodeWriter(out, codeTree);
 
-
-        int bitCount = 0;
         for (int i = 0; i < values.length; i++) {
-            codeWriter.write(values[i]);
-            frequencyTable.increment(values[i]);
+            int value;
+            if (values[i] < 0) {
+                value = 256 + Math.abs(values[i]);
+            } else {
+                value = values[i];
+            }
+
+            codeWriter.write(value);
+            frequencyTable.increment(value);
             bitCount++;
 
             if (isUnbalanced(bitCount)) {
@@ -84,8 +107,10 @@ public class AdaptiveHuffmanEncode {
         }
         codeWriter.write(256); // EOF
 
+        /*
         String codeString = codeTree.toString(frequencyTable);
         HTOutputStream.print(codeString);
+        */
     }
 
 

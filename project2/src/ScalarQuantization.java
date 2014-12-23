@@ -124,7 +124,7 @@ public class ScalarQuantization {
             col = zigZagTable[i][1];
 
             deQuantizedValue = quantized[i] * quantizeTable[row][col];
-            deQuantized[row][col] = (Math.round(deQuantizedValue));
+            deQuantized[row][col] = deQuantizedValue; //(Math.round(deQuantizedValue));
         }
         return deQuantized;
     }

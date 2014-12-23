@@ -23,7 +23,7 @@ public class CodeReader {
         while (true) {
             int bit = inputStream.read();
             if (bit == -1) {
-                throw new EOFException("End of stream reached");
+                return -1; // EOS REACHED
             }
             Node nextNode;
 

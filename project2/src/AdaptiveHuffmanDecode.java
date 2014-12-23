@@ -8,9 +8,24 @@ import java.io.OutputStream;
 
 
 public class AdaptiveHuffmanDecode {
-    private static final int IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
+    private static int IMAGE_BIT_SIZE;
     private static final int BIT_COUNT_LIMIT = 65536; // Chosen appropriately for grayscale images.
                                                       // Encoder and decoder must have the same value
+
+    private CodeFrequency frequencyTable;
+    private CodeTree generatedCodeTree;
+    private CodeReader codeReader;
+    private final int tileSize;
+
+
+    public AdaptiveHuffmanDecode(BitInputStream in, int tileSize) {
+        this.IMAGE_BIT_SIZE = 513; // 8 bit for positive + 8 bit for negative + 1 EOF
+        this.frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+        this.generatedCodeTree = frequencyTable.generateCodeTree();
+        this.codeReader = new CodeReader(in, generatedCodeTree);
+        this.tileSize = tileSize;
+    }
+
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
@@ -18,6 +33,8 @@ public class AdaptiveHuffmanDecode {
             System.exit(1);
             return;
         }
+
+        IMAGE_BIT_SIZE = 257; // 8 bit image + EOF for Decoder
 
         final long startTime = System.currentTimeMillis();
 
@@ -59,6 +76,51 @@ public class AdaptiveHuffmanDecode {
             }
         }
     }
+
+
+
+    private int bitCount = 0;
+
+    public int[] decodeQuantized(BitInputStream in) throws IOException {
+        this.frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+        this.generatedCodeTree = frequencyTable.generateCodeTree();
+        this.codeReader = new CodeReader(in, generatedCodeTree);
+
+        int i = 0;
+        int[] values = new int[tileSize * tileSize];
+
+        while (true) {
+            int symbol = codeReader.read();
+            if (symbol == -1) {
+                return new int[1]; // EOS reached
+            }
+            if (symbol == 256) {
+                break; // EOF
+            }
+
+            int value;
+            if (symbol > 256) {
+                value = (symbol - 256) * (-1);
+            } else {
+                value = symbol;
+            }
+            values[i] = value;
+            frequencyTable.increment(symbol);
+            bitCount++;
+
+            if (isUnbalanced(bitCount)) {
+                CodeTree updatedCodeTree = frequencyTable.generateCodeTree();
+                codeReader.setCodeTree(updatedCodeTree);
+            }
+            if (toLimitFreqTable(bitCount)) {
+                frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
+            }
+            i++;
+        }
+        return values;
+    }
+
+
 
 
     private static boolean isUnbalanced(int count) {

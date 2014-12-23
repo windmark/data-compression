@@ -1,11 +1,13 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import javax.imageio.*;
 
 public class TransformImageEncode {
-    private static final int IMAGE_WIDTH = 512;
-    private static final int IMAGE_HEIGHT = 512;
+    private static final int IMAGE_WIDTH = 1600;
+    private static final int IMAGE_HEIGHT = 1200;
     private static final int TILE_SIZE = 8;
-    private static final int QUANTIZE_QUALITY = 25; // Test values, higher should be better
+    private static final int QUANTIZE_QUALITY = 25;
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
@@ -42,37 +44,16 @@ public class TransformImageEncode {
         ArrayList<double[][]> dctTileList = new ArrayList<double[][]>(tileList.size());
         ArrayList<int[]> quantizeList = new ArrayList<int[]>(TILE_SIZE * TILE_SIZE);
 
-        AdaptiveHuffmanEncode encode = new AdaptiveHuffmanEncode();
+        AdaptiveHuffmanEncode encode = new AdaptiveHuffmanEncode(outputStream);
 
         double[][] tile;
+
         for (int i = 0; i < tileList.size(); i++) {
             tile = tileList.get(i).getTile();
             dctTileList.add(dctTransformation.forwardDCT(tile));
             quantizeList.add(scalarQuantization.quantize(dctTileList.get(i)));
             encode.encodeQuantized(quantizeList.get(i), outputStream, HTOutputStream);
         }
-
-
-
-
-
-
-        // DECODE
-        ArrayList<double[][]> inverseDctTileList = new ArrayList<double[][]>(dctTileList.size());
-        for (int i = 0; i < quantizeList.size(); i++) {
-            inverseDctTileList.add(
-                    dctTransformation.inverseDCT(
-                        scalarQuantization.deQuantize(quantizeList.get(i))
-                    )
-            );
-        }
-
-
-
-
-
-
-
 
 
 

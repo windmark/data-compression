@@ -20,6 +20,7 @@ public class BitOutputStream {
         if (!(bit == 0 || bit == 1)) {
             throw new IllegalArgumentException("Bit must be either 0 or 1");
         }
+
         currentByte = (currentByte << 1) | bit;
         numBitsInCurrentByte++;
         if (numBitsInCurrentByte == 8) {
