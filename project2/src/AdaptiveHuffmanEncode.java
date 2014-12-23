@@ -70,17 +70,8 @@ public class AdaptiveHuffmanEncode {
 
         int bitCount = 0;
         for (int i = 0; i < values.length; i++) {
-
-        }
-
-
-/*
-        while (true) {
-            int bit = in.read();
-            if (bit == -1) break; // EOS
-
-            codeWriter.write(bit);
-            frequencyTable.increment(bit);
+            codeWriter.write(values[i]);
+            frequencyTable.increment(values[i]);
             bitCount++;
 
             if (isUnbalanced(bitCount)) {
@@ -95,7 +86,6 @@ public class AdaptiveHuffmanEncode {
 
         String codeString = codeTree.toString(frequencyTable);
         HTOutputStream.print(codeString);
-*/
     }
 
 

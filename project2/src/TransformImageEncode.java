@@ -49,8 +49,7 @@ public class TransformImageEncode {
             tile = tileList.get(i).getTile();
             dctTileList.add(dctTransformation.forwardDCT(tile));
             quantizeList.add(scalarQuantization.quantize(dctTileList.get(i)));
-            //encode.encodeQuantized(quantizeList.get(i), outputStream, HTOutputStream);
-
+            encode.encodeQuantized(quantizeList.get(i), outputStream, HTOutputStream);
         }
 
 
