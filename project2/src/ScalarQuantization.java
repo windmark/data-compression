@@ -1,24 +1,55 @@
-
-
-
 public class ScalarQuantization {
     private final int blockSize;
-    private int[][] zigZag;
+    private final int blockValueCount;
+    private int[][] zigZagTable;
+    private int[][] quantizeTable;
 
 
-    public ScalarQuantization(int blockSize) {
+
+    public ScalarQuantization(int blockSize, int quality) {
         this.blockSize = blockSize;
-        zigZag = new int[blockSize * blockSize][2];
-        initZigZag(zigZag);
+        this.blockValueCount = blockSize * blockSize;
+        zigZagTable = new int[blockValueCount][2];
+        initZigZagTable(zigZagTable);
+
+        quantizeTable = new int[blockSize][blockSize];
+        initQuantizeTable(quantizeTable, quality);
     }
 
 
 
 
 
+
+
+    // Sample jpeg quantization table as seen in slides
+    private void initQuantizeTable(int[][] quantizeTable, int quality) {
+
+        quantizeTable = new int[][]{
+                {16, 11, 10, 16, 24, 40, 51, 61},
+                {12, 12, 14, 19, 26, 58, 60, 55},
+                {14, 13, 16, 24, 40, 57, 69, 56},
+                {14, 17, 22, 29, 51, 87, 80, 62},
+                {18, 22, 37, 56, 68, 109, 103, 77},
+                {24, 35, 55, 64, 81, 104, 113, 92},
+                {49, 64, 78, 87, 103, 121, 120, 101},
+                {72, 92, 95, 98, 112, 100, 103, 99}
+        };
+
+/*
+        for (int i = 0; i < blockSize; i++) {
+            for (int j = 0; j < blockSize; j++) {
+                quantizeTable[i][j] = (1 + ((1 + i + j) * quality));
+            }
+        }
+*/
+
+    }
+
+
     // Based on the Zig Zag algorithm found here
     // http://rosettacode.org/wiki/Zig_Zag
-    public void initZigZag(int[][] zigZag) {
+    private void initZigZagTable(int[][] zigZag) {
         int a = 1, b = 1;
 
         for (int i = 0; i < blockSize * blockSize; i++) {
@@ -47,6 +78,36 @@ public class ScalarQuantization {
                 }
             }
         }
+    }
+
+
+    public int[] quantize(double[][] block) {
+        int[] quantized = new int[blockValueCount];
+        int row, col;
+        double result;
+
+        for (int i = 0; i < blockValueCount; i++) {
+            row = zigZagTable[i][0];
+            col = zigZagTable[i][1];
+            result = block[row][col] / quantizeTable[row][col];
+            quantized[i] = (int) Math.round(result);
+        }
+        return quantized;
+    }
+
+
+    public double[][] deQuantize(int[] quantized) {
+        double[][] deQuantized = new double[blockSize][blockSize];
+        int row, col, deQuantizedValue;
+
+        for (int i = 0; i < blockValueCount; i++) {
+            row = zigZagTable[i][0];
+            col = zigZagTable[i][1];
+
+            deQuantizedValue = quantized[i] * quantizeTable[row][col];
+            deQuantized[row][col] = (Math.round(deQuantizedValue));
+        }
+        return deQuantized;
     }
 
 }

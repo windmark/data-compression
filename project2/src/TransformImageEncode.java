@@ -5,9 +5,7 @@ public class TransformImageEncode {
     private static final int IMAGE_WIDTH = 512;
     private static final int IMAGE_HEIGHT = 512;
     private static final int BLOCK_SIZE = 8;
-
-
-
+    private static final int QUANTIZE_QUALITY = 25; // Test values, higher should be better
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
@@ -26,84 +24,49 @@ public class TransformImageEncode {
         BitOutputStream outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
         PrintWriter HTOutputStream = new PrintWriter(HTOutputFile);
 
-//////////////////
-        double[][] m = {
-            {
-                162, 162, 162, 161, 160, 160, 161, 162
-            },
-            {
-                161, 162, 162, 162, 160, 160, 161, 162
-            },
-            {
-                162, 162, 162, 162, 161, 160, 161, 161
-            },
-            {
-                163, 163, 162, 161, 161, 161, 161, 162
-            },
-            {
-                165, 163, 161, 160, 160, 160, 161, 162
-            },
-            {
-                164, 163, 160, 159, 159, 160, 161, 161
-            },
-            {
-                162, 160, 159, 158, 159, 159, 158, 158
-            },
-            {
-                159, 159, 158, 158, 159, 158, 156, 155
-            }
-        };
-
-        int quantum[][] = new int[8][8];
-
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                quantum[i][j] = (1 + ((1 + i + j)));
-            }
-        }
 
 
-/////////////////////
-
-
-        //////// DO STUFF
-        DCT dctTransformation = new DCT(BLOCK_SIZE);
-
+        ////////////////////////////////////////
+        ////////////////DO STUFF////////////////
+        ////////////////////////////////////////
         int[][] imageMatrix = imageToMatrix(inputStream);
         ArrayList<double[][]> tileList = imageToTiles(imageMatrix);
+
+        DCT dctTransformation = new DCT(BLOCK_SIZE);
+        ScalarQuantization scalarQuantization = new ScalarQuantization(BLOCK_SIZE, QUANTIZE_QUALITY);
+
+
+
         ArrayList<double[][]> dctTileList = new ArrayList<double[][]>(tileList.size());
-
-        //// TEMPORARY MATRIX FOR CHECKING VALUES
-        tileList.add(0, m);
-        ////
-
-        for (double[][] tile : tileList) {
-            dctTileList.add(dctTransformation.forwardDCT(tile));
-        }
-
-
-        ScalarQuantization quantize = new ScalarQuantization(BLOCK_SIZE);
-
-
-
-
-
-
-
-
-
-
-
+        ArrayList<int[]> quantizeList = new ArrayList<int[]>(BLOCK_SIZE * BLOCK_SIZE);
+        ArrayList<double[][]> deQuantizeList = new ArrayList<double[][]>(BLOCK_SIZE * BLOCK_SIZE);
         ArrayList<double[][]> inverseDctTileList = new ArrayList<double[][]>(dctTileList.size());
-        for (double[][] tile : dctTileList) {
-            inverseDctTileList.add(dctTransformation.inverseDCT(tile));
+
+        double[][] x, y;
+
+
+
+        for (int i = 0; i < tileList.size(); i++) {
+            dctTileList.add(dctTransformation.forwardDCT(tileList.get(i)));
+            quantizeList.add(scalarQuantization.quantize(dctTileList.get(i)));
+
+            x = scalarQuantization.deQuantize(quantizeList.get(i));
+            y = dctTransformation.inverseDCT(x);
+            deQuantizeList.add(y);
         }
-        inverseDctTileList.get(0);
 
 
-        //////////A TEMPORARY CHECK TO SEE THE DIFFERENCE BETWEEN BEFORE AND AFTER DCT AND INVERSE DCT
+
+
+
+
+
+
+
+
+
+
+        //////////A TEMPORARY CHECK TO SEE THE DIFFERENCE BEFORE AND AFTER DCT AND INVERSE DCT
         double sum = 0;
 
         for (int h = 0; h < tileList.size(); h++) {
