@@ -16,18 +16,26 @@ public class TransformImageDecode {
 
         File inputFile = new File(args[0]);
         File outputFile = new File(args[1]);
-        BitInputStream inputStream = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
-        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
 
-        final long startTime = System.currentTimeMillis();
+        for (int i = 1; i <= 5; i++) {
 
-        decode(inputStream, outputStream);
+            inputFile = new File("testdata/encoded/test" + i + "_mw.raw"); //args[0]);
+            outputFile = new File("testdata/decoded/test" + i + "_mw.raw"); //args[1]);
 
-        final long endTime = System.currentTimeMillis();
-        System.out.println("Decoding execution time: " + (endTime - startTime) + " ms" );
 
-        outputStream.close();
-        inputStream.close();
+            BitInputStream inputStream = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
+            BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
+
+            final long startTime = System.currentTimeMillis();
+
+            decode(inputStream, outputStream);
+
+            final long endTime = System.currentTimeMillis();
+            System.out.println("Decoding execution time: " + (endTime - startTime) + " ms");
+
+            outputStream.close();
+            inputStream.close();
+        }
 
 
     }
@@ -47,51 +55,16 @@ public class TransformImageDecode {
                 break; // DEFINED AS EOS REACHED
             }
 
-            double[][] a = scalarQuantization.deQuantize(tileValues);
-            double[][] b = dctTransformation.inverseDCT(a);
-            inverseDctTileList.add(b);
-
-            /*
             inverseDctTileList.add(
                     dctTransformation.inverseDCT(
                             scalarQuantization.deQuantize(tileValues)
                     )
             );
-            */
 
             i++;
         }
 
-
-        /*
-        DCT (remove mean?)
-        Quantize
-        Encode
-        ->
-
-        Decode
-        DeQuantize
-        InvDCT (add mean?)
-        */
-
-
         double[][] imageMatrix = tilesToMatrix(inverseDctTileList);
-
-/*
-        int x = 0;
-        for (int a = 0; a < 1; a++) {
-            for (int b = 0; b < imageMatrix[0].length; b++) {
-                double value = imageMatrix[a][b];
-                if (value < 0 || value > 256) {
-                    System.out.println(x + ":     " + value + " :" + a + "," + b);
-                    x++;
-                }
-            }
-        }
-        System.out.println(x);
-*/
-
-
         matrixToFile(imageMatrix, outputStream);
     }
 

@@ -17,20 +17,31 @@ public class TransformImageEncode {
         File outputFile = new File(args[1]);
         File HTOutputFile = new File(args[2]);
 
-        BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(inputFile));
-        BitOutputStream outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
-        PrintWriter HTOutputStream = new PrintWriter(HTOutputFile);
 
-        final long startTime = System.currentTimeMillis();
+        /////////////////////////
 
-        encode(inputStream, outputStream, HTOutputStream);
 
-        final long endTime = System.currentTimeMillis();
-        System.out.println("Encoding execution time: " + (endTime - startTime) + " ms" );
+        for (int i = 1; i <= 5; i++) {
 
-        outputStream.close();
-        inputStream.close();
-        HTOutputStream.close();
+            inputFile = new File("testdata/test" + i + ".raw"); //args[0]);
+            outputFile = new File("testdata/encoded/test" + i + "_mw.raw"); //args[1]);
+
+
+            BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(inputFile));
+            BitOutputStream outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
+            PrintWriter HTOutputStream = new PrintWriter(HTOutputFile);
+
+            final long startTime = System.currentTimeMillis();
+
+            encode(inputStream, outputStream, HTOutputStream);
+
+            final long endTime = System.currentTimeMillis();
+            System.out.println("Encoding execution time: " + (endTime - startTime) + " ms");
+
+            outputStream.close();
+            inputStream.close();
+            HTOutputStream.close();
+        }
     }
 
 
@@ -45,34 +56,6 @@ public class TransformImageEncode {
         ArrayList<int[]> quantizeList = new ArrayList<int[]>(TILE_SIZE * TILE_SIZE);
 
         AdaptiveHuffmanEncode encode = new AdaptiveHuffmanEncode(outputStream);
-
-        ///////////////////////TESTING
-/*
-        double[][] testMatrix = {
-                {52,55,61,66,70,61,64,73},
-                {63,59,55,90,109,85,69,72},
-                {62,59,68,113,144,104,66,73},
-                {63,58,71,122,154,106,70,69},
-                {67,61,68,104,126,88,68,70},
-                {79,65,60,70,77,68,58,73},
-                {85,71,64,59,55,61,65,83},
-                {87,79,69,68,65,76,78,94}
-        };
-
-        double meanValue = 0;
-        for (int o = 0; o < 8; o++) {
-            for (int p = 0; p < 8; p++) {
-                meanValue += testMatrix[o][p];
-            }
-        }
-        meanValue = meanValue / 64;
-
-
-        double[][] x = dctTransformation.forwardDCT(testMatrix);
-        int[] y = scalarQuantization.quantize(x);
-        encode.encodeQuantized(y, outputStream, HTOutputStream);
-*/
-        //////////////////////////
 
         double[][] tile;
         for (int i = 0; i < tileList.size(); i++) {

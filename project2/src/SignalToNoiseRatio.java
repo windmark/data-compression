@@ -29,7 +29,8 @@ public class SignalToNoiseRatio {
 
             double SNR = signalNoiseRatio(originalImage, decodedImage);
 
-            System.out.println("File " + i + " SNR: " + SNR);
+            System.out.println(SNR);
+            //System.out.println("File " + i + " SNR: " + SNR);
 
             originalStream.close();
             decodedStream.close();
