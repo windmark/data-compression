@@ -47,6 +47,7 @@ public class TransformImageEncode {
         AdaptiveHuffmanEncode encode = new AdaptiveHuffmanEncode(outputStream);
 
         ///////////////////////TESTING
+/*
         double[][] testMatrix = {
                 {52,55,61,66,70,61,64,73},
                 {63,59,55,90,109,85,69,72},
@@ -66,10 +67,11 @@ public class TransformImageEncode {
         }
         meanValue = meanValue / 64;
 
+
         double[][] x = dctTransformation.forwardDCT(testMatrix);
         int[] y = scalarQuantization.quantize(x);
         encode.encodeQuantized(y, outputStream, HTOutputStream);
-
+*/
         //////////////////////////
 
         double[][] tile;

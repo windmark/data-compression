@@ -12,14 +12,14 @@ public class DCT {
 
     public DCT(int tileSize) {
         if (!isPowerOfTwo(tileSize)) {
-            throw new IllegalArgumentException("Block size must be a power of 2");
+            throw new IllegalArgumentException("Tile size must be a power of 2");
         }
 
         this.tileSize = tileSize;
         cosTable = new double[tileSize][tileSize];
         transposedCosTable = new double[tileSize][tileSize];
         sqrtTwoDivTileSize = sqrt(2.0 / tileSize);
-        oneDivSqrtTwo = 1 / sqrt(2);
+        oneDivSqrtTwo = 1.0 / sqrt(2);
 
         initCosTables();
     }
@@ -74,7 +74,7 @@ public class DCT {
 
     public double[][] forwardDCT(double[][] inBlock){
         if (inBlock.length != tileSize || inBlock[0].length != tileSize) {
-            throw new IllegalArgumentException("Input matrix must be block sized");
+            throw new IllegalArgumentException("Input matrix must be tile sized");
         }
 
         double[][] outBlock = new double[tileSize][tileSize];
@@ -107,15 +107,31 @@ public class DCT {
             }
 
             double alpha;
-            if (k > 0) {
-                alpha = 1;
-            } else {
+            if (k == 0) {
                 alpha = oneDivSqrtTwo;
+            } else {
+                alpha = 1;
             }
+
             outRow[k] = sum * alpha * sqrtTwoDivTileSize;
         }
         return outRow;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public double[][] inverseDCT(double[][] inBlock) {
@@ -145,17 +161,17 @@ public class DCT {
         double[] outRow = new double[tileSize];
 
         for (int n = 0; n < tileSize; n++) {
-            double sum = 0.0;
+            double sum = 0;
 
             for (int k = 0; k < tileSize; k++) {
                 double cosine = transposedCosTable[n][k];
                 double product = valueArray[k] * cosine;
 
                 double alpha;
-                if (k > 0) {
-                    alpha = 1;
-                } else {
+                if (k == 0) {
                     alpha = oneDivSqrtTwo;
+                } else {
+                    alpha = 1;
                 }
 
                 sum += alpha * product;
