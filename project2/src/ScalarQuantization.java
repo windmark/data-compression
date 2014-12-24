@@ -8,21 +8,14 @@ public class ScalarQuantization {
     private int[][] quantizeTable;
 
 
-
     public ScalarQuantization(int blockSize) {
         this.blockSize = blockSize;
         this.blockValueCount = blockSize * blockSize;
         zigZagTable = new int[blockValueCount][2];
         initZigZagTable(zigZagTable);
 
-
         quantizeTable = initQuantizeTable();
     }
-
-
-
-
-
 
 
     // Sample jpeg quantization table as seen in slides
@@ -38,14 +31,6 @@ public class ScalarQuantization {
                 {72, 92, 95, 98, 112, 100, 103, 99}
         };
         return quantizeTable;
-
-/*
-        for (int i = 0; i < blockSize; i++) {
-            for (int j = 0; j < blockSize; j++) {
-                quantizeTable[i][j] = (1 + ((1 + i + j) * quality));
-            }
-        }
-*/
 
     }
 
@@ -123,7 +108,7 @@ public class ScalarQuantization {
             col = zigZagTable[i][1];
 
             deQuantizedValue = quantized[i] * quantizeTable[row][col];
-            deQuantized[row][col] = deQuantizedValue; //(Math.round(deQuantizedValue));
+            deQuantized[row][col] = deQuantizedValue;
         }
         return deQuantized;
     }

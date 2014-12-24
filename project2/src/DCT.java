@@ -6,6 +6,8 @@ public class DCT {
     private double cosTable[][];
     private double transposedCosTable[][];
     private final int tileSize;
+    private final double sqrtTwoDivTileSize;
+    private final double oneDivSqrtTwo;
 
 
     public DCT(int tileSize) {
@@ -16,6 +18,8 @@ public class DCT {
         this.tileSize = tileSize;
         cosTable = new double[tileSize][tileSize];
         transposedCosTable = new double[tileSize][tileSize];
+        sqrtTwoDivTileSize = sqrt(2.0 / tileSize);
+        oneDivSqrtTwo = 1 / sqrt(2);
 
         initCosTables();
     }
@@ -103,12 +107,12 @@ public class DCT {
             }
 
             double alpha;
-            if (k == 0) {
-                alpha = 1.0 / sqrt(2);
-            } else {
+            if (k > 0) {
                 alpha = 1;
+            } else {
+                alpha = oneDivSqrtTwo;
             }
-            outRow[k] = sum * alpha * sqrt(2.0 / tileSize);
+            outRow[k] = sum * alpha * sqrtTwoDivTileSize;
         }
         return outRow;
     }
@@ -136,6 +140,7 @@ public class DCT {
     }
 
 
+
     private double[] inverseDCT1D(double[] valueArray) {
         double[] outRow = new double[tileSize];
 
@@ -145,16 +150,17 @@ public class DCT {
             for (int k = 0; k < tileSize; k++) {
                 double cosine = transposedCosTable[n][k];
                 double product = valueArray[k] * cosine;
-                double alpha;
 
-                if (k == 0) {
-                    alpha = 1.0 / sqrt(2);
-                } else {
+                double alpha;
+                if (k > 0) {
                     alpha = 1;
+                } else {
+                    alpha = oneDivSqrtTwo;
                 }
+
                 sum += alpha * product;
             }
-            outRow[n] = sum * sqrt(2.0 / tileSize);
+            outRow[n] = sum * sqrtTwoDivTileSize;
         }
         return outRow;
     }

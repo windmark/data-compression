@@ -14,13 +14,25 @@ public class TransformImageDecode {
             return;
         }
 
-        final long startTime = System.currentTimeMillis();
-
         File inputFile = new File(args[0]);
         File outputFile = new File(args[1]);
         BitInputStream inputStream = new BitInputStream(new BufferedInputStream(new FileInputStream(inputFile)));
         BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
 
+        final long startTime = System.currentTimeMillis();
+
+        decode(inputStream, outputStream);
+
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Decoding execution time: " + (endTime - startTime) + " ms" );
+
+        outputStream.close();
+        inputStream.close();
+
+
+    }
+
+    private static void decode(BitInputStream inputStream, BufferedOutputStream outputStream) throws IOException {
         AdaptiveHuffmanDecode decode = new AdaptiveHuffmanDecode(inputStream, TILE_SIZE);
         ScalarQuantization scalarQuantization = new ScalarQuantization(TILE_SIZE);
         DCT dctTransformation = new DCT(TILE_SIZE);
@@ -38,24 +50,49 @@ public class TransformImageDecode {
             double[][] a = scalarQuantization.deQuantize(tileValues);
             double[][] b = dctTransformation.inverseDCT(a);
             inverseDctTileList.add(b);
-/*
+
+            /*
             inverseDctTileList.add(
                     dctTransformation.inverseDCT(
                             scalarQuantization.deQuantize(tileValues)
                     )
             );
-*/
+            */
+
             i++;
         }
 
+
+        /*
+        DCT (remove mean?)
+        Quantize
+        Encode
+        ->
+
+        Decode
+        DeQuantize
+        InvDCT (add mean?)
+        */
+
+
         double[][] imageMatrix = tilesToMatrix(inverseDctTileList);
+
+/*
+        int x = 0;
+        for (int a = 0; a < 1; a++) {
+            for (int b = 0; b < imageMatrix[0].length; b++) {
+                double value = imageMatrix[a][b];
+                if (value < 0 || value > 256) {
+                    System.out.println(x + ":     " + value + " :" + a + "," + b);
+                    x++;
+                }
+            }
+        }
+        System.out.println(x);
+*/
+
+
         matrixToFile(imageMatrix, outputStream);
-
-        outputStream.close();
-        inputStream.close();
-
-        final long endTime = System.currentTimeMillis();
-        System.out.println("Decoding execution time: " + (endTime - startTime) + " ms" );
     }
 
 
@@ -73,6 +110,14 @@ public class TransformImageDecode {
 
                 for (int a = 0; a < TILE_SIZE; a++) {
                     for (int b = 0; b < TILE_SIZE; b++) {
+
+                        /*
+                        double value = tileList.get(counter)[a][b];
+                        if (value < 0 || value > 255) {
+                            System.out.println("Value: " + value + " in tile " + counter + " " + a + ":" + b);
+                        }
+                        */
+
                         matrix[xpos + a][ypos + b] = tileList.get(counter)[a][b];
                     }
                 }
@@ -82,7 +127,7 @@ public class TransformImageDecode {
         return matrix;
     }
 
-    private static void matrixToFile(double[][] matrix, OutputStream out) throws IOException {
+    private static void matrixToFile(double[][] matrix, BufferedOutputStream out) throws IOException {
         for (int x = 0; x < IMAGE_WIDTH; x++) {
             for (int y = 0; y < IMAGE_HEIGHT; y++) {
                 int value = (int) Math.round(matrix[x][y]);
