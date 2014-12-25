@@ -7,6 +7,7 @@ public class AdaptiveHuffmanEncode {
     private CodeFrequency frequencyTable;
     private CodeTree codeTree;
     private CodeWriter codeWriter;
+    private int bitCount;
 
 
     public AdaptiveHuffmanEncode(BitOutputStream out) {
@@ -14,8 +15,7 @@ public class AdaptiveHuffmanEncode {
         this.frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
         this.codeTree = frequencyTable.generateCodeTree();
         this.codeWriter = new CodeWriter(out, codeTree);
-
-
+        this.bitCount = 0;
     }
 
 
@@ -78,15 +78,9 @@ public class AdaptiveHuffmanEncode {
         HTOutputStream.print(codeString);
     }
 
-    private int bitCount = 0;
 
-    public void encodeQuantized(int[] values, BitOutputStream out, PrintWriter HTOutputStream) throws IOException {
-/*
-        this.frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
-        this.codeTree = frequencyTable.generateCodeTree();
-        this.codeWriter = new CodeWriter(out, codeTree);
-*/
 
+    public void encodeQuantized(int[] values) throws IOException {
         for (int i = 0; i < values.length; i++) {
             int value;
             if (values[i] < 0) {
@@ -108,11 +102,6 @@ public class AdaptiveHuffmanEncode {
             }
         }
         codeWriter.write(256); // EOF
-
-        /*
-        String codeString = codeTree.toString(frequencyTable);
-        HTOutputStream.print(codeString);
-        */
     }
 
 

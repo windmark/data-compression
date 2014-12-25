@@ -16,6 +16,7 @@ public class AdaptiveHuffmanDecode {
     private CodeTree generatedCodeTree;
     private CodeReader codeReader;
     private final int tileSize;
+    private int bitCount;
 
 
     public AdaptiveHuffmanDecode(BitInputStream in, int tileSize) {
@@ -24,6 +25,7 @@ public class AdaptiveHuffmanDecode {
         this.generatedCodeTree = frequencyTable.generateCodeTree();
         this.codeReader = new CodeReader(in, generatedCodeTree);
         this.tileSize = tileSize;
+        this.bitCount = 0;
     }
 
 
@@ -78,16 +80,7 @@ public class AdaptiveHuffmanDecode {
     }
 
 
-
-    private int bitCount = 0;
-
     public int[] decodeQuantized(BitInputStream in) throws IOException {
-/*
-        this.frequencyTable = new CodeFrequency(IMAGE_BIT_SIZE);
-        this.generatedCodeTree = frequencyTable.generateCodeTree();
-        this.codeReader = new CodeReader(in, generatedCodeTree);
-*/
-
         int i = 0;
         int[] values = new int[tileSize * tileSize];
 
@@ -121,8 +114,6 @@ public class AdaptiveHuffmanDecode {
         }
         return values;
     }
-
-
 
 
     private static boolean isUnbalanced(int count) {

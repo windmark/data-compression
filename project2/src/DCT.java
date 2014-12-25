@@ -11,10 +11,6 @@ public class DCT {
 
 
     public DCT(int tileSize) {
-        if (!isPowerOfTwo(tileSize)) {
-            throw new IllegalArgumentException("Tile size must be a power of 2");
-        }
-
         this.tileSize = tileSize;
         cosTable = new double[tileSize][tileSize];
         transposedCosTable = new double[tileSize][tileSize];
@@ -38,71 +34,69 @@ public class DCT {
     }
 
 
-    private double[] getRow(double[][] block, int row){
+    private double[] getRow(double[][] tile, int row){
         double[] output = new double[tileSize];
 
         for(int column = 0; column < tileSize; column++){
-            output[column] = block[row][column];
+            output[column] = tile[row][column];
         }
         return output;
     }
 
 
-    private void insertRow(double[][] block, double[] row, int rowNumber){
+    private void insertRow(double[][] tile, double[] row, int rowNumber){
         for(int column = 0; column < tileSize; column++){
-            block[rowNumber][column] = row[column];
+            tile[rowNumber][column] = row[column];
         }
     }
 
 
-    private double[] getColumn(double[][] block, int column){
+    private double[] getColumn(double[][] tile, int column){
         double[] output = new double[tileSize];
 
         for(int row = 0; row < tileSize; row++){
-            output[row] = block[row][column];
+            output[row] = tile[row][column];
         }
         return output;
     }
 
 
-    private void insertColumn(double[][] block, double[] column, int columnNumber){
+    private void insertColumn(double[][] tile, double[] column, int columnNumber){
         for(int row = 0; row < tileSize; row++){
-            block[row][columnNumber] = column[row];
+            tile[row][columnNumber] = column[row];
         }
     }
 
 
-    public double[][] forwardDCT(double[][] inBlock){
-        if (inBlock.length != tileSize || inBlock[0].length != tileSize) {
+    public double[][] forwardDCT(double[][] inTile){
+        if (inTile.length != tileSize || inTile[0].length != tileSize) {
             throw new IllegalArgumentException("Input matrix must be tile sized");
         }
 
-        double[][] outBlock = new double[tileSize][tileSize];
-
         // Transforms rows
         for (int row = 0; row < tileSize; row++) {
-            double[] transformedRow = forwardDCT1D(getRow(inBlock, row));
-            insertRow(outBlock, transformedRow, row);
+            double[] transformedRow = forwardDCT1D(getRow(inTile, row));
+            insertRow(inTile, transformedRow, row);
         }
 
         // then transforms columns
         for (int column = 0; column < tileSize; column++) {
-            double[] transformedColumn = forwardDCT1D(getColumn(outBlock, column));
-            insertColumn(outBlock, transformedColumn, column);
+            double[] transformedColumn = forwardDCT1D(getColumn(inTile, column));
+            insertColumn(inTile, transformedColumn, column);
         }
-        return outBlock;
+        return inTile;
     }
 
 
     private double[] forwardDCT1D(double[] valueArray) {
-        double[] outRow = new double[tileSize];
+        double[] outArray = new double[tileSize];
 
         for (int k = 0; k < tileSize; k++) {
-            double sum = 0;
+            double sum = 0.0;
 
             for (int n = 0; n < tileSize; n++) {
-                double cosine = cosTable[k][n];
-                double product = valueArray[n] * cosine;
+                double cos = cosTable[k][n];
+                double product = valueArray[n] * cos;
                 sum += product;
             }
 
@@ -113,55 +107,39 @@ public class DCT {
                 alpha = 1;
             }
 
-            outRow[k] = sum * alpha * sqrtTwoDivTileSize;
+            outArray[k] = sum * alpha * sqrtTwoDivTileSize;
         }
-        return outRow;
+        return outArray;
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public double[][] inverseDCT(double[][] inBlock) {
-        if (inBlock.length != tileSize || inBlock[0].length != tileSize) {
+    public double[][] inverseDCT(double[][] inTile) {
+        if (inTile.length != tileSize || inTile[0].length != tileSize) {
             throw new IllegalArgumentException("Input matrix must be block sized");
         }
 
-        double[][] outBlock = new double[tileSize][tileSize];
-
         // Inverse transform rows
         for (int row = 0; row < tileSize; row++) {
-            double[] transformedRow = inverseDCT1D(getRow(inBlock, row));
-            insertRow(outBlock, transformedRow, row);
+            double[] transformedRow = inverseDCT1D(getRow(inTile, row));
+            insertRow(inTile, transformedRow, row);
         }
 
         // then columns
         for (int column = 0; column < tileSize; column++) {
-            double[] transformedColumn = inverseDCT1D(getColumn(outBlock, column));
-            insertColumn(outBlock, transformedColumn, column);
+            double[] transformedColumn = inverseDCT1D(getColumn(inTile, column));
+            insertColumn(inTile, transformedColumn, column);
         }
-        return outBlock;
-    }
 
+        normalize(inTile);
+        return inTile;
+    }
 
 
     private double[] inverseDCT1D(double[] valueArray) {
         double[] outRow = new double[tileSize];
 
         for (int n = 0; n < tileSize; n++) {
-            double sum = 0;
+            double sum = 0.0;
 
             for (int k = 0; k < tileSize; k++) {
                 double cosine = transposedCosTable[n][k];
@@ -173,7 +151,6 @@ public class DCT {
                 } else {
                     alpha = 1;
                 }
-
                 sum += alpha * product;
             }
             outRow[n] = sum * sqrtTwoDivTileSize;
@@ -181,9 +158,19 @@ public class DCT {
         return outRow;
     }
 
+    // Converting to 8-bit unsigned
+    private void normalize(double[][] inTile) {
+        for(int row = 0;row < tileSize;row++){
+            for(int col = 0;col < tileSize;col++){
+                if(inTile[row][col] < 0){
+                    inTile[row][col] = 0;
+                }
 
-    private boolean isPowerOfTwo(int n) {
-        return (n > 0) && ((n & (n - 1)) == 0);
+                if(inTile[row][col] > 255){
+                    inTile[row][col] = 255;
+                }
+            }
+        }
     }
 }
 

@@ -12,25 +12,19 @@ public class SignalToNoiseRatio {
             return;
         }
 
-
         for (int i = 1; i <= 5; i++) {
 
             File originalFile = new File("testdata/test" + i + ".raw"); //args[0]);
             File decodedFile = new File("testdata/decoded/test" + i + "_mw.raw"); //args[1]);
 
-
             BufferedInputStream originalStream = new BufferedInputStream(new FileInputStream(originalFile));
             BufferedInputStream decodedStream = new BufferedInputStream(new FileInputStream(decodedFile));
-
 
             int[][] originalImage = imageToMatrix(originalStream);
             int[][] decodedImage = imageToMatrix(decodedStream);
 
-
             double SNR = signalNoiseRatio(originalImage, decodedImage);
-
             System.out.println(SNR);
-            //System.out.println("File " + i + " SNR: " + SNR);
 
             originalStream.close();
             decodedStream.close();

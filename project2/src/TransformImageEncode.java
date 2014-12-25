@@ -7,45 +7,41 @@ public class TransformImageEncode {
     private static final int TILE_SIZE = 8;
 
     public static void main(String[] args) throws IOException {
+        if (!isPowerOfTwo(TILE_SIZE)) {
+            throw new IllegalArgumentException("Tile size must be a power of 2");
+        }
+
         if (args.length == 0) {
-            System.err.println("Usage: java TransformImageEncode input_file_name output_file_name huffman_table_output_file_name");
+            System.err.println("Usage: java TransformImageEncode input_file_name output_file_name");
             System.exit(1);
             return;
         }
 
         File inputFile = new File(args[0]);
         File outputFile = new File(args[1]);
-        File HTOutputFile = new File(args[2]);
-
-
-        /////////////////////////
 
 
         for (int i = 1; i <= 5; i++) {
-
             inputFile = new File("testdata/test" + i + ".raw"); //args[0]);
             outputFile = new File("testdata/encoded/test" + i + "_mw.raw"); //args[1]);
 
-
             BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(inputFile));
             BitOutputStream outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
-            PrintWriter HTOutputStream = new PrintWriter(HTOutputFile);
 
             final long startTime = System.currentTimeMillis();
 
-            encode(inputStream, outputStream, HTOutputStream);
+            encode(inputStream, outputStream);
 
             final long endTime = System.currentTimeMillis();
-            System.out.println("Encoding execution time: " + (endTime - startTime) + " ms");
+            System.out.println("File " + i + " encoding execution time: " + (endTime - startTime) + " ms");
 
             outputStream.close();
             inputStream.close();
-            HTOutputStream.close();
         }
     }
 
 
-    private static void encode(BufferedInputStream inputStream, BitOutputStream outputStream, PrintWriter HTOutputStream)  throws IOException  {
+    private static void encode(BufferedInputStream inputStream, BitOutputStream outputStream)  throws IOException  {
         int[][] imageMatrix = imageToMatrix(inputStream);
 
         ArrayList<Tile> tileList = initTiles(imageMatrix);
@@ -62,7 +58,7 @@ public class TransformImageEncode {
             tile = tileList.get(i).getTile();
             dctTileList.add(dctTransformation.forwardDCT(tile));
             quantizeList.add(scalarQuantization.quantize(dctTileList.get(i)));
-            encode.encodeQuantized(quantizeList.get(i), outputStream, HTOutputStream);
+            encode.encodeQuantized(quantizeList.get(i));
         }
     }
 
@@ -78,7 +74,6 @@ public class TransformImageEncode {
                 int xpos = j * TILE_SIZE;
                 int ypos = i * TILE_SIZE;
 
-                // Doing this for structural purposes. ArrayLists and such. Despite using more memory and accesses.
                 double[][] tile = new double[TILE_SIZE][TILE_SIZE];
                 double totalValue = 0;
 
@@ -106,5 +101,9 @@ public class TransformImageEncode {
             }
         }
         return matrix;
+    }
+
+    private static boolean isPowerOfTwo(int n) {
+        return (n > 0) && ((n & (n - 1)) == 0);
     }
 }
