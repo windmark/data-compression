@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78c6fb49-81a8-4e94-92fa-8b6dcabfddf9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Presentation.pptx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid29175.log" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/SignalToNoiseRatio.class" afterPath="$PROJECT_DIR$/out/production/project2/SignalToNoiseRatio.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/TransformImageDecode.class" afterPath="$PROJECT_DIR$/out/production/project2/TransformImageDecode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project2/TransformImageEncode.class" afterPath="$PROJECT_DIR$/out/production/project2/TransformImageEncode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.txt" afterPath="$PROJECT_DIR$/README.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SignalToNoiseRatio.java" afterPath="$PROJECT_DIR$/src/SignalToNoiseRatio.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TransformImageDecode.java" afterPath="$PROJECT_DIR$/src/TransformImageDecode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TransformImageEncode.java" afterPath="$PROJECT_DIR$/src/TransformImageEncode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="project2.iws" />
@@ -35,46 +28,7 @@
     <favorites_list name="project2" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="TransformImageEncode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TransformImageEncode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.6666665" vertical-offset="864" max-vertical-offset="1962">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3638#3639#0" expanded="true" />
-                <element signature="e#3692#3693#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransformImageDecode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TransformImageDecode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="1890">
-              <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3355#3356#0" expanded="true" />
-                <element signature="e#3409#3410#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SignalToNoiseRatio.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/SignalToNoiseRatio.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35714287" vertical-offset="724" max-vertical-offset="1350">
-              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -270,7 +224,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="SignalToNoiseRatio" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="testdata/test2.raw testdata/decoded/test2_mw.raw" />
+      <option name="PROGRAM_PARAMETERS" value="testdata/test3.raw testdata/decoded/test3_mw.raw" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -452,8 +406,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.SignalToNoiseRatio" />
-        <item index="1" class="java.lang.String" itemvalue="Application.TransformImageDecode" />
-        <item index="2" class="java.lang.String" itemvalue="Application.TransformImageEncode" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TransformImageEncode" />
+        <item index="2" class="java.lang.String" itemvalue="Application.TransformImageDecode" />
         <item index="3" class="java.lang.String" itemvalue="Application.AdaptiveHuffmanDecode" />
         <item index="4" class="java.lang.String" itemvalue="Application.AdaptiveHuffmanEncode" />
       </list>
@@ -498,7 +452,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="32" width="1366" height="736" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -517,8 +471,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16691843" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32905295" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16691843" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905295" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32744783" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -808,10 +762,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SignalToNoiseRatio.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5408163" vertical-offset="346" max-vertical-offset="1314">
+          <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/TransformImageDecode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="1890">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.5867347" vertical-offset="112" max-vertical-offset="1890">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3355#3356#0" expanded="true" />
@@ -822,21 +784,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TransformImageEncode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6666665" vertical-offset="864" max-vertical-offset="1962">
+        <state vertical-scroll-proportion="0.051136363" vertical-offset="1026" max-vertical-offset="1962">
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3638#3639#0" expanded="true" />
             <element signature="e#3692#3693#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SignalToNoiseRatio.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35714287" vertical-offset="724" max-vertical-offset="1350">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

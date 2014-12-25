@@ -47,9 +47,7 @@ public class SignalToNoiseRatio {
         }
         origMse = origSum / pixelCount;
         diffMse = diffSum / (IMAGE_HEIGHT * IMAGE_WIDTH);
-
         SNR = 10 * Math.log10(origMse / diffMse);
-
         return SNR;
     }
 
