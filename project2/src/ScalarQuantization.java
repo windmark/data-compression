@@ -1,19 +1,15 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class ScalarQuantization {
-    private final int blockSize;
-    private final int blockValueCount;
+    private final int tileSize;
+    private final int tileValueCount;
     private int[][] zigZagTable;
     private int[][] quantizeTable;
 
 
-    public ScalarQuantization(int blockSize) {
-        this.blockSize = blockSize;
-        this.blockValueCount = blockSize * blockSize;
-        zigZagTable = new int[blockValueCount][2];
-        initZigZagTable(zigZagTable);
+    public ScalarQuantization(int tileSize) {
+        this.tileSize = tileSize;
+        this.tileValueCount = tileSize * tileSize;
 
+        zigZagTable = initZigZagTable();
         quantizeTable = initQuantizeTable();
     }
 
@@ -31,50 +27,48 @@ public class ScalarQuantization {
                 {72, 92, 95, 98, 112, 100, 103, 99}
         };
         return quantizeTable;
-
     }
 
 
     // Based on the Zig Zag algorithm found here
     // http://rosettacode.org/wiki/Zig_Zag
-    private void initZigZagTable(int[][] zigZag) {
+    private int[][] initZigZagTable() {
+        int[][] zigZag = new int[tileValueCount][2];
         int a = 1, b = 1;
 
-        for (int i = 0; i < blockSize * blockSize; i++) {
+        for (int i = 0; i < tileSize * tileSize; i++) {
             zigZag[i][0] = a - 1;
             zigZag[i][1] = b - 1;
 
             if ((a + b) % 2 == 0) {
-                if (b < blockSize) {
+                if (b < tileSize) {
                     b++;
                 } else {
                     a += 2;
                 }
-
                 if (a > 1) {
                     a--;
                 }
             } else {
-                if (a < blockSize) {
+                if (a < tileSize) {
                     a++;
                 } else {
                     b += 2;
                 }
-
                 if (b > 1) {
                     b--;
                 }
             }
         }
+        return zigZag;
     }
 
 
     public int[] quantize(double[][] block) {
-        int[] quantized = new int[blockValueCount];
+        int[] quantized = new int[tileValueCount];
         int row, col, result;
 
-
-        for (int i = 0; i < blockValueCount; i++) {
+        for (int i = 0; i < tileValueCount; i++) {
             row = zigZagTable[i][0];
             col = zigZagTable[i][1];
             result = (int) Math.round(block[row][col] / quantizeTable[row][col]);
@@ -90,8 +84,9 @@ public class ScalarQuantization {
     private int[] removeTrailingZeroes(int[] array) {
         int i = array.length;
 
-        // Backward traverses until non-zero
-        while (i-- > 0 && array[i] == 0) {}
+        while (i-- > 0 && array[i] == 0) {
+            // Backward traverses until non-zero
+        }
         int[] output = new int[i+1];
         System.arraycopy(array, 0, output, 0, i+1);
 
@@ -100,10 +95,10 @@ public class ScalarQuantization {
 
 
     public double[][] deQuantize(int[] quantized) {
-        double[][] deQuantized = new double[blockSize][blockSize];
+        double[][] deQuantized = new double[tileSize][tileSize];
         int row, col, deQuantizedValue;
 
-        for (int i = 0; i < blockValueCount; i++) {
+        for (int i = 0; i < tileValueCount; i++) {
             row = zigZagTable[i][0];
             col = zigZagTable[i][1];
 
@@ -112,5 +107,4 @@ public class ScalarQuantization {
         }
         return deQuantized;
     }
-
 }
