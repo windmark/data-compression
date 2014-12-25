@@ -12,7 +12,7 @@ public class TransformImageEncode {
         }
 
         if (args.length == 0) {
-            System.err.println("Usage: java TransformImageEncode input_file_name output_file_name");
+            System.err.println("Usage: java TransformImageEncode raw_file encoded_file");
             System.exit(1);
             return;
         }
@@ -20,24 +20,18 @@ public class TransformImageEncode {
         File inputFile = new File(args[0]);
         File outputFile = new File(args[1]);
 
+        BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(inputFile));
+        BitOutputStream outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
 
-        for (int i = 1; i <= 5; i++) {
-            inputFile = new File("testdata/test" + i + ".raw"); //args[0]);
-            outputFile = new File("testdata/encoded/test" + i + "_mw.raw"); //args[1]);
+        final long startTime = System.currentTimeMillis();
 
-            BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(inputFile));
-            BitOutputStream outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
+        encode(inputStream, outputStream);
 
-            final long startTime = System.currentTimeMillis();
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Encoding execution time: " + (endTime - startTime) + " ms");
 
-            encode(inputStream, outputStream);
-
-            final long endTime = System.currentTimeMillis();
-            System.out.println("File " + i + " encoding execution time: " + (endTime - startTime) + " ms");
-
-            outputStream.close();
-            inputStream.close();
-        }
+        outputStream.close();
+        inputStream.close();
     }
 
 

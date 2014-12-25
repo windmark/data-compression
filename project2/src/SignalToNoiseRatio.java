@@ -7,29 +7,27 @@ public class SignalToNoiseRatio {
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
-            System.err.println("Usage: java SignalToNoiseRatio original_file_name decoded_file_name");
+            System.err.println("Usage: java SignalToNoiseRatio original_file decoded_file");
             System.exit(1);
             return;
         }
 
-        for (int i = 1; i <= 5; i++) {
+        File originalFile = new File(args[0]);
+        File decodedFile = new File(args[1]);
 
-            File originalFile = new File("testdata/test" + i + ".raw"); //args[0]);
-            File decodedFile = new File("testdata/decoded/test" + i + "_mw.raw"); //args[1]);
+        BufferedInputStream originalStream = new BufferedInputStream(new FileInputStream(originalFile));
+        BufferedInputStream decodedStream = new BufferedInputStream(new FileInputStream(decodedFile));
 
-            BufferedInputStream originalStream = new BufferedInputStream(new FileInputStream(originalFile));
-            BufferedInputStream decodedStream = new BufferedInputStream(new FileInputStream(decodedFile));
+        int[][] originalImage = imageToMatrix(originalStream);
+        int[][] decodedImage = imageToMatrix(decodedStream);
 
-            int[][] originalImage = imageToMatrix(originalStream);
-            int[][] decodedImage = imageToMatrix(decodedStream);
+        double SNR = signalNoiseRatio(originalImage, decodedImage);
+        System.out.println(SNR);
 
-            double SNR = signalNoiseRatio(originalImage, decodedImage);
-            System.out.println(SNR);
-
-            originalStream.close();
-            decodedStream.close();
-        }
+        originalStream.close();
+        decodedStream.close();
     }
+
 
     private static double signalNoiseRatio(int[][] originalImage, int[][] decodedImage) {
         double origSum = 0, diffSum = 0;
@@ -47,8 +45,6 @@ public class SignalToNoiseRatio {
                 diffSum += (err * err);
             }
         }
-
-
         origMse = origSum / pixelCount;
         diffMse = diffSum / (IMAGE_HEIGHT * IMAGE_WIDTH);
 
