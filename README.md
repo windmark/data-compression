@@ -6,15 +6,13 @@ The two projects were implemented in Java and handle encoding and decoding of gr
 
 
 ## Table of Contents
-<!-- MarkdownTOC -->
+- [Author](#author)
+- [Compiling](#compiling)
+- [Lossless Image Compression](#lossless-image-compression)
+- [Lossy Image Compression](#lossy-image-compression)
+- [References](#references)
 
-- [Author][author]
-- [Compiling][compiling]
-- [Lossless Image Compression][lossless-image-compression]
-- [Lossy Image Compression][lossy-image-compression]
-- [References][references]
 
-<!-- /MarkdownTOC -->
 
 
 
