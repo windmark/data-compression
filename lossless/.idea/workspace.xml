@@ -1,110 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ff701dd-f5ff-448c-961f-2aa9351b2ed6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Project 1 - Marcus Windmark - Data Compression.tar.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Project 2 - Marcus Windmark - Data Compression.tar.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/description.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/dictionaries/marcus.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/project-template.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/Presentation - Project 1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/README.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/AdaptiveHuffmanDecode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/AdaptiveHuffmanEncode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/BitInputStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/BitOutputStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/CodeFrequency.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/CodeReader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/CodeTree.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/CodeWriter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/InnerNode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/Leaf.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/out/production/project1/Node.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/project1.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/AdaptiveHuffmanDecode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/AdaptiveHuffmanEncode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/BitInputStream.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/BitOutputStream.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/CodeFrequency.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/CodeReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/CodeTree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/CodeWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/InnerNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/Leaf.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/src/Node.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/testdata/test1.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/testdata/test2.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/testdata/test3.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/testdata/test4.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project1/testdata/test5.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/Presentation - Project 2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/README.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/AdaptiveHuffmanDecode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/AdaptiveHuffmanEncode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/BitInputStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/BitOutputStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/CodeFrequency.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/CodeReader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/CodeTree.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/CodeWriter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/DCT.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/InnerNode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/Leaf.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/Node.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/ScalarQuantization.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/SignalToNoiseRatio.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/Tile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/TransformImageDecode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/out/production/project2/TransformImageEncode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/project2.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/AdaptiveHuffmanDecode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/AdaptiveHuffmanEncode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/BitInputStream.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/BitOutputStream.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/CodeFrequency.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/CodeReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/CodeTree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/CodeWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/DCT.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/InnerNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/Leaf.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/Node.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/ScalarQuantization.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/SignalToNoiseRatio.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/Tile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/TransformImageDecode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/src/TransformImageEncode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test1.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test1_reference.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test2.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test2_reference.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test3.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test3_reference.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test4.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test4_reference.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test5.raw" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project2/testdata/test5_reference.jpg" afterPath="" />
-    </list>
+    <list default="true" id="9ff701dd-f5ff-448c-961f-2aa9351b2ed6" name="Default" comment="" />
     <ignored path="project1.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -131,8 +28,8 @@
       <file leaf-file-name="AdaptiveHuffmanEncode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9055118" vertical-offset="393" max-vertical-offset="1620">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.48031497" vertical-offset="393" max-vertical-offset="1620">
+              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -621,8 +518,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AdaptiveHuffmanEncode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9055118" vertical-offset="393" max-vertical-offset="1620">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.48031497" vertical-offset="393" max-vertical-offset="1620">
+          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding />
         </state>
       </provider>
