@@ -5,13 +5,14 @@ This repository includes two projects on image compression and was developed for
 The two projects were implemented in Java and handle encoding and decoding of grayscale, 256 bit, image files. Although being in the same repository, the lossless and lossy projects are independent. The results are based on running the codec on the five RAW images given in the testdata folder.
 
 
+## Table of Contents
 <!-- MarkdownTOC -->
 
-- Author
-- Compiling
-- Lossless Image Compression
-- Lossy Image Compression
-- References
+- [Author][author]
+- [Compiling][compiling]
+- [Lossless Image Compression][lossless-image-compression]
+- [Lossy Image Compression][lossy-image-compression]
+- [References][references]
 
 <!-- /MarkdownTOC -->
 
@@ -26,7 +27,7 @@ Marcus Windmark, http://windmark.se
 
 ## Compiling
 
-Either import the individual projects with an IDE of your choice or manually compile the java files in the src folder. 
+Either import the individual projects with an IDE of your choice or manually compile the java files in the src folder. Instructions regarding execution can be found under respective segment.
 
 
 
